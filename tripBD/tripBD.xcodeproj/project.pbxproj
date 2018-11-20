@@ -22,6 +22,26 @@
 		CE7B89D8219D6DAF005E9BFA /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = CE7B89D7219D6DAF005E9BFA /* map.png */; };
 		CE7B89DA219D7A17005E9BFA /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = CE7B89D9219D7A17005E9BFA /* back.png */; };
 		CE7B89DD219D8708005E9BFA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE7B89DC219D8708005E9BFA /* MapKit.framework */; };
+		CEBA299221A4370900D22099 /* alu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEBA299121A4370900D22099 /* alu.jpg */; };
+		CEBA299421A4371000D22099 /* amiyakhum.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEBA299321A4371000D22099 /* amiyakhum.jpg */; };
+		CEBA299621A4371800D22099 /* Bangabhaban.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEBA299521A4371800D22099 /* Bangabhaban.jpg */; };
+		CEBA299821A4371F00D22099 /* boga.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEBA299721A4371E00D22099 /* boga.jpg */; };
+		CEBA299A21A4372500D22099 /* Curjon hall.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CEBA299921A4372500D22099 /* Curjon hall.jpeg */; };
+		CEBA299C21A4372E00D22099 /* greenland.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEBA299B21A4372E00D22099 /* greenland.jpg */; };
+		CEBA299E21A4373600D22099 /* himchori.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CEBA299D21A4373600D22099 /* himchori.jpeg */; };
+		CEBA29A021A4373F00D22099 /* jaflong.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEBA299F21A4373F00D22099 /* jaflong.jpg */; };
+		CEBA29A221A4374600D22099 /* lalbagh.JPG in Resources */ = {isa = PBXBuildFile; fileRef = CEBA29A121A4374600D22099 /* lalbagh.JPG */; };
+		CEBA29A421A4374D00D22099 /* maynamati.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEBA29A321A4374D00D22099 /* maynamati.jpg */; };
+		CEBA29A621A4375600D22099 /* nafakhum.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEBA29A521A4375600D22099 /* nafakhum.jpg */; };
+		CEBA29A821A4375C00D22099 /* nandan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEBA29A721A4375C00D22099 /* nandan.jpg */; };
+		CEBA29AA21A4376400D22099 /* prantik.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEBA29A921A4376400D22099 /* prantik.jpg */; };
+		CEBA29AC21A4376B00D22099 /* Rajban.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEBA29AB21A4376B00D22099 /* Rajban.jpg */; };
+		CEBA29AE21A4377200D22099 /* ramna .jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEBA29AD21A4377200D22099 /* ramna .jpg */; };
+		CEBA29B021A4377900D22099 /* rasel.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEBA29AF21A4377800D22099 /* rasel.jpg */; };
+		CEBA29B221A4377F00D22099 /* rich.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEBA29B121A4377F00D22099 /* rich.jpg */; };
+		CEBA29B421A4378600D22099 /* sonadia.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEBA29B321A4378600D22099 /* sonadia.jpg */; };
+		CEBA29B621A4378C00D22099 /* Teknaf.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEBA29B521A4378C00D22099 /* Teknaf.jpg */; };
+		CEBA29B821A4379300D22099 /* zinda.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEBA29B721A4379200D22099 /* zinda.jpg */; };
 		CEC7484821A1DB6E00C70145 /* ExpandingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC7484721A1DB6E00C70145 /* ExpandingCell.xib */; };
 		CEC7484B21A1DBDC00C70145 /* ExpandingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC7484A21A1DBDC00C70145 /* ExpandingCell.m */; };
 		CEC7484F21A319B200C70145 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC7484D21A319B200C70145 /* DetailViewController.m */; };
@@ -54,6 +74,26 @@
 		CE7B89D7219D6DAF005E9BFA /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
 		CE7B89D9219D7A17005E9BFA /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		CE7B89DC219D8708005E9BFA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		CEBA299121A4370900D22099 /* alu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = alu.jpg; path = ../../../alu.jpg; sourceTree = "<group>"; };
+		CEBA299321A4371000D22099 /* amiyakhum.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = amiyakhum.jpg; path = ../../../amiyakhum.jpg; sourceTree = "<group>"; };
+		CEBA299521A4371800D22099 /* Bangabhaban.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Bangabhaban.jpg; path = ../../../Bangabhaban.jpg; sourceTree = "<group>"; };
+		CEBA299721A4371E00D22099 /* boga.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = boga.jpg; path = ../../../boga.jpg; sourceTree = "<group>"; };
+		CEBA299921A4372500D22099 /* Curjon hall.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Curjon hall.jpeg"; path = "../../../Curjon hall.jpeg"; sourceTree = "<group>"; };
+		CEBA299B21A4372E00D22099 /* greenland.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = greenland.jpg; path = ../../../greenland.jpg; sourceTree = "<group>"; };
+		CEBA299D21A4373600D22099 /* himchori.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = himchori.jpeg; path = ../../../himchori.jpeg; sourceTree = "<group>"; };
+		CEBA299F21A4373F00D22099 /* jaflong.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = jaflong.jpg; path = ../../../jaflong.jpg; sourceTree = "<group>"; };
+		CEBA29A121A4374600D22099 /* lalbagh.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = lalbagh.JPG; path = ../../../lalbagh.JPG; sourceTree = "<group>"; };
+		CEBA29A321A4374D00D22099 /* maynamati.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = maynamati.jpg; path = ../../../maynamati.jpg; sourceTree = "<group>"; };
+		CEBA29A521A4375600D22099 /* nafakhum.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = nafakhum.jpg; path = ../../../nafakhum.jpg; sourceTree = "<group>"; };
+		CEBA29A721A4375C00D22099 /* nandan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = nandan.jpg; path = ../../../nandan.jpg; sourceTree = "<group>"; };
+		CEBA29A921A4376400D22099 /* prantik.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = prantik.jpg; path = ../../../prantik.jpg; sourceTree = "<group>"; };
+		CEBA29AB21A4376B00D22099 /* Rajban.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Rajban.jpg; path = ../../../Rajban.jpg; sourceTree = "<group>"; };
+		CEBA29AD21A4377200D22099 /* ramna .jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ramna .jpg"; path = "../../../ramna .jpg"; sourceTree = "<group>"; };
+		CEBA29AF21A4377800D22099 /* rasel.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = rasel.jpg; path = ../../../rasel.jpg; sourceTree = "<group>"; };
+		CEBA29B121A4377F00D22099 /* rich.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = rich.jpg; path = ../../../rich.jpg; sourceTree = "<group>"; };
+		CEBA29B321A4378600D22099 /* sonadia.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sonadia.jpg; path = ../../../sonadia.jpg; sourceTree = "<group>"; };
+		CEBA29B521A4378C00D22099 /* Teknaf.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Teknaf.jpg; path = ../../../Teknaf.jpg; sourceTree = "<group>"; };
+		CEBA29B721A4379200D22099 /* zinda.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = zinda.jpg; path = ../../../zinda.jpg; sourceTree = "<group>"; };
 		CEC7484721A1DB6E00C70145 /* ExpandingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpandingCell.xib; sourceTree = "<group>"; };
 		CEC7484921A1DBDC00C70145 /* ExpandingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExpandingCell.h; sourceTree = "<group>"; };
 		CEC7484A21A1DBDC00C70145 /* ExpandingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpandingCell.m; sourceTree = "<group>"; };
@@ -123,6 +163,26 @@
 		CE72646B219DE086008A356A /* images */ = {
 			isa = PBXGroup;
 			children = (
+				CEBA29B721A4379200D22099 /* zinda.jpg */,
+				CEBA29B521A4378C00D22099 /* Teknaf.jpg */,
+				CEBA29B321A4378600D22099 /* sonadia.jpg */,
+				CEBA29B121A4377F00D22099 /* rich.jpg */,
+				CEBA29AB21A4376B00D22099 /* Rajban.jpg */,
+				CEBA29AF21A4377800D22099 /* rasel.jpg */,
+				CEBA29A921A4376400D22099 /* prantik.jpg */,
+				CEBA29AD21A4377200D22099 /* ramna .jpg */,
+				CEBA29A721A4375C00D22099 /* nandan.jpg */,
+				CEBA29A521A4375600D22099 /* nafakhum.jpg */,
+				CEBA29A321A4374D00D22099 /* maynamati.jpg */,
+				CEBA29A121A4374600D22099 /* lalbagh.JPG */,
+				CEBA299F21A4373F00D22099 /* jaflong.jpg */,
+				CEBA299D21A4373600D22099 /* himchori.jpeg */,
+				CEBA299B21A4372E00D22099 /* greenland.jpg */,
+				CEBA299921A4372500D22099 /* Curjon hall.jpeg */,
+				CEBA299721A4371E00D22099 /* boga.jpg */,
+				CEBA299521A4371800D22099 /* Bangabhaban.jpg */,
+				CEBA299121A4370900D22099 /* alu.jpg */,
+				CEBA299321A4371000D22099 /* amiyakhum.jpg */,
 				CEC7485521A3E6C000C70145 /* bagha.jpeg */,
 				CEC7485921A3E6DD00C70145 /* tara.jpg */,
 				CEC7485721A3E6D600C70145 /* shat_gambuj.jpeg */,
@@ -206,17 +266,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEBA299221A4370900D22099 /* alu.jpg in Resources */,
 				CE56A55F2189FD6700E67758 /* ict.png in Resources */,
+				CEBA29A621A4375600D22099 /* nafakhum.jpg in Resources */,
 				50236B9B21899AA1009282A3 /* LaunchScreen.storyboard in Resources */,
+				CEBA29AE21A4377200D22099 /* ramna .jpg in Resources */,
 				CE7B89D1219B08F0005E9BFA /* down.png in Resources */,
 				50236B9821899AA1009282A3 /* Assets.xcassets in Resources */,
 				CEC7485421A3E6B600C70145 /* Ahsan_Manzil.jpg in Resources */,
+				CEBA29A421A4374D00D22099 /* maynamati.jpg in Resources */,
+				CEBA29AC21A4376B00D22099 /* Rajban.jpg in Resources */,
+				CEBA29B621A4378C00D22099 /* Teknaf.jpg in Resources */,
 				CEC7485621A3E6C000C70145 /* bagha.jpeg in Resources */,
 				CEC7485221A31EF800C70145 /* golden_temple.jpg in Resources */,
+				CEBA299421A4371000D22099 /* amiyakhum.jpg in Resources */,
+				CEBA29B221A4377F00D22099 /* rich.jpg in Resources */,
+				CEBA299821A4371F00D22099 /* boga.jpg in Resources */,
+				CEBA299E21A4373600D22099 /* himchori.jpeg in Resources */,
 				CEC7485A21A3E6DD00C70145 /* tara.jpg in Resources */,
 				50236BA521899CA5009282A3 /* Beautiful-Bangladesh-English.png in Resources */,
 				CE7B89D8219D6DAF005E9BFA /* map.png in Resources */,
 				CE56A55D2189FBC300E67758 /* visitbanla.png in Resources */,
+				CEBA299A21A4372500D22099 /* Curjon hall.jpeg in Resources */,
+				CEBA299621A4371800D22099 /* Bangabhaban.jpg in Resources */,
+				CEBA29AA21A4376400D22099 /* prantik.jpg in Resources */,
+				CEBA29B021A4377900D22099 /* rasel.jpg in Resources */,
+				CEBA29B421A4378600D22099 /* sonadia.jpg in Resources */,
+				CEBA299C21A4372E00D22099 /* greenland.jpg in Resources */,
 				CEC7484821A1DB6E00C70145 /* ExpandingCell.xib in Resources */,
 				CE7B89D6219B4180005E9BFA /* menu.png in Resources */,
 				CEC7485021A319B200C70145 /* DetailViewController.xib in Resources */,
@@ -224,7 +300,11 @@
 				CE7B89DA219D7A17005E9BFA /* back.png in Resources */,
 				CEC776C121917ED900C5F5B9 /* 3.png in Resources */,
 				CE7B89CF219B08E8005E9BFA /* up.png in Resources */,
+				CEBA29A221A4374600D22099 /* lalbagh.JPG in Resources */,
 				50236B9621899A9F009282A3 /* Main.storyboard in Resources */,
+				CEBA29A021A4373F00D22099 /* jaflong.jpg in Resources */,
+				CEBA29B821A4379300D22099 /* zinda.jpg in Resources */,
+				CEBA29A821A4375C00D22099 /* nandan.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -119,26 +119,34 @@
                                 <rect key="frame" x="157" y="588" width="69" height="59"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jf2-by-can">
-                                <rect key="frame" x="0.0" y="64" width="235" height="471"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="loQ-Gp-nPN">
+                                <rect key="frame" x="0.0" y="62" width="246" height="454"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="QjF-0i-dNB"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="mAh-6B-yIW"/>
-                                </connections>
-                            </tableView>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jf2-by-can">
+                                        <rect key="frame" x="0.0" y="0.0" width="235" height="442"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="QjF-0i-dNB"/>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="mAh-6B-yIW"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0012638909880000001" green="0.44511365920000001" blue="0.0019610419459999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="jf2-by-can" id="uUE-ko-nTK"/>
+                        <outlet property="tableViewbar" destination="loQ-Gp-nPN" id="Snh-8g-Pi5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="577" y="-16"/>
+            <point key="canvasLocation" x="576.79999999999995" y="-16.641679160419791"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="5qZ-c4-8ka">
@@ -192,7 +200,6 @@
         <image name="visitbanla.png" width="549" height="284"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="FOt-9o-gVA"/>
         <segue reference="6PA-Zu-8wg"/>
     </inferredMetricsTieBreakers>
 </document>

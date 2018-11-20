@@ -13,7 +13,7 @@
 @end
 
 @implementation DetailViewController
-@synthesize imageView,lbltitle,txtdetail, arrdimg, arrtitle,isimage,istitle,selectedRow;
+@synthesize imageView,lbltitle,txtdetail, arrdimg, arrtitle,isimage1,istitle1,isimage2,istitle2,isimage3,istitle3,isimage4,istitle4,isimage5,istitle5,selectedRow;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,25 +23,89 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    if (isimage==1) {
-        arrdimg=[[NSMutableArray alloc]initWithObjects:@"golden_temple.jpg",@"tara.jpg",@"shat_gambuj.jpeg",@"Ahsan_Manzil.jpg",@"bagha.jpeg", nil];
+    if (isimage1==1) {
+        arrdimg=[[NSMutableArray alloc]initWithObjects:@"golden_temple.jpg",@"Rajban.jpg",@"himchori.jpeg",@"Alu.jpg",@"ramna.jpg", nil];
         UIImage *img=[UIImage imageNamed:[arrdimg objectAtIndex:selectedRow]];
         imageView.image=img;
-        
-      
-        isimage=0;
+        isimage1=0;
     }
     
-    if (istitle == 1)
+    if (istitle1 == 1)
     {
         
-        arrtitle=[[NSMutableArray alloc]initWithObjects:@"GoldenTemple",@"Tara Mosque",@"Shat Gambuj Mosque",@"Ahsan Manjil",@"bagha Masjid", nil];
+        arrtitle=[[NSMutableArray alloc]initWithObjects:@"GoldenTemple",@"Rajbon Bihar",@"Himchori",@"Alu Tila",@"Ramna Park", nil];
         UILabel *lbl=[arrtitle objectAtIndex:selectedRow];
         lbltitle.text=lbl;
-        istitle =0;
-        
+        istitle1 =0;
+    }
     
+    if (isimage2==1) {
+        arrdimg=[[NSMutableArray alloc]initWithObjects:@"tara.jpg",@"maynamati.jpg",@"sonadia.jpg",@"rich.jpg",@"nandan.jpg", nil];
+        UIImage *img=[UIImage imageNamed:[arrdimg objectAtIndex:selectedRow]];
+        imageView.image=img;
+        isimage2=0;
+    }
+    
+    
+    if (istitle2 == 1)
+    {
         
+        arrtitle=[[NSMutableArray alloc]initWithObjects:@"Tara Masjid",@"Maynamoti",@"Sona Diya",@"Richang Jhorna",@"Nandon Park", nil];
+        UILabel *lbl=[arrtitle objectAtIndex:selectedRow];
+        lbltitle.text=lbl;
+        istitle2 =0;
+    }
+    
+    
+    if (isimage3==1) {
+        arrdimg=[[NSMutableArray alloc]initWithObjects:@"shat_gambuj.jpeg",@"Curjon hall.jpeg",@"Teknaf.jpg",@"amiyakhum.jpg",@"greenland.jpg", nil];
+        UIImage *img=[UIImage imageNamed:[arrdimg objectAtIndex:selectedRow]];
+        imageView.image=img;
+        isimage3=0;
+    }
+    
+    if (istitle3 == 1)
+    {
+        
+        arrtitle=[[NSMutableArray alloc]initWithObjects:@"Shat Gambuj Mosque",@"Curjon Hall",@"Teknaf",@"Omiyakhum Jhorna",@"Greenland Park", nil];
+        UILabel *lbl=[arrtitle objectAtIndex:selectedRow];
+        lbltitle.text=lbl;
+        istitle3 =0;
+    }
+    
+    
+    if (isimage4==1) {
+        arrdimg=[[NSMutableArray alloc]initWithObjects:@"Ahsan_Manzil.jpg",@"lalbagh.JPG",@"nafakhum.jpg",@"boga.jpg",@"rasel.jpg", nil];
+        UIImage *img=[UIImage imageNamed:[arrdimg objectAtIndex:selectedRow]];
+        imageView.image=img;
+        isimage4=0;
+    }
+    
+    if (istitle4 == 1)
+    {
+        
+        arrtitle=[[NSMutableArray alloc]initWithObjects:@"Ahsan Manjil",@"Lalbag Kella",@"Nafakhum Jhorna",@"Boga Lake",@"Rasel Park", nil];
+        UILabel *lbl=[arrtitle objectAtIndex:selectedRow];
+        lbltitle.text=lbl;
+        istitle4 =0;
+    }
+    
+    
+    
+    if (isimage5==1) {
+        arrdimg=[[NSMutableArray alloc]initWithObjects:@"bagha.jpeg",@"Bangabhaban.jpg",@"jaflong.jpg",@"prantik.jpg",@"zinda.jpg", nil];
+        UIImage *img=[UIImage imageNamed:[arrdimg objectAtIndex:selectedRow]];
+        imageView.image=img;
+        isimage5=0;
+    }
+    
+    if (istitle5 == 1)
+    {
+        
+        arrtitle=[[NSMutableArray alloc]initWithObjects:@"Bagha Masjid",@"Bongo Bhobon",@"Jaflong",@"Prantik Lake",@"Jinda Park", nil];
+        UILabel *lbl=[arrtitle objectAtIndex:selectedRow];
+        lbltitle.text=lbl;
+        istitle5 =0;
     }
 }
 /*

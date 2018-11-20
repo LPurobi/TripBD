@@ -19,7 +19,7 @@
 @end
 
 @implementation ViewController
-@synthesize tableView,arrimg,arrtitle,arrsubtitle1,arrsubtitle2,arrsubtitle3,arrsubtitle4,arrsubtitle5,selectedIndex,lblbtn1,lblbtn2,lblbtn3,lblbtn4,lblbtn5;
+@synthesize tableView,tableViewbar, arrimg,arrtitle,arrsubtitle1,arrsubtitle2,arrsubtitle3,arrsubtitle4,arrsubtitle5,selectedIndex,lblbtn1,lblbtn2,lblbtn3,lblbtn4,lblbtn5;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,11 +32,12 @@
     }
     
     arrtitle=[[NSMutableArray alloc]initWithObjects:@"Religious",@"Historical",@"Recreational",@"Natural",@"For Kids", nil];
-    arrsubtitle1=[[NSMutableArray alloc]initWithObjects:@"GoldenTemple",@"rajbon bihar",@"himchori",@"alu tila",@"ramna park", nil];
-    arrsubtitle2=[[NSMutableArray alloc]initWithObjects:@"tara masjid",@"maynamoti",@"sona diya",@"richang jhorna",@"nandon park", nil];
-    arrsubtitle3=[[NSMutableArray alloc]initWithObjects:@"shat gambuj mosque",@"karjon hall",@"teknaf",@"omiyakhum jhorna",@"greenland park", nil];
-    arrsubtitle4=[[NSMutableArray alloc]initWithObjects:@"ahsan manjil",@"lalbag kella",@"nafakhum jhorna",@"boga lake",@"rasel park", nil];
-    arrsubtitle5=[[NSMutableArray alloc]initWithObjects:@"bagha masjid",@"bongo bhobon",@"jaflong",@"prantik lake",@"jinda park", nil];
+    
+    arrsubtitle1=[[NSMutableArray alloc]initWithObjects:@"GoldenTemple",@"Rajbon Bihar",@"Himchori",@"Alu Tila",@"Ramna Park", nil];
+    arrsubtitle2=[[NSMutableArray alloc]initWithObjects:@"Tara Masjid",@"Maynamoti",@"Sona Diya",@"Richang Jhorna",@"Nandon Park", nil];
+    arrsubtitle3=[[NSMutableArray alloc]initWithObjects:@"Shat Gambuj Mosque",@"Curjon Hall",@"Teknaf",@"Omiyakhum Jhorna",@"Greenland Park", nil];
+    arrsubtitle4=[[NSMutableArray alloc]initWithObjects:@"Ahsan Manjil",@"Lalbag Kella",@"Nafakhum Jhorna",@"Boga Lake",@"Rasel Park", nil];
+    arrsubtitle5=[[NSMutableArray alloc]initWithObjects:@"Bagha Masjid",@"Bongo Bhobon",@"Jaflong",@"Prantik Lake",@"Jinda Park", nil];
     
     
     
@@ -53,6 +54,7 @@
     
     
     tableView.backgroundColor=[UIColor groupTableViewBackgroundColor];
+    tableViewbar.hidden=YES;
     isTableViewOpen=false;
     
     
@@ -139,8 +141,8 @@
 {
     DetailViewController *dec =[[DetailViewController alloc]initWithNibName:@"DetailViewController" bundle:nil];
     dec.selectedRow=lblbtn1.tag;
-    dec.isimage=1;
-    dec.istitle=1;
+    dec.isimage1=1;
+    dec.istitle1=1;
     [self presentViewController:dec animated:YES completion:nil];
 }
 
@@ -148,8 +150,8 @@
 {
     DetailViewController *dec =[[DetailViewController alloc]initWithNibName:@"DetailViewController" bundle:nil];
     dec.selectedRow=lblbtn2.tag;
-    dec.isimage=1;
-    dec.istitle=1;
+    dec.isimage2=1;
+    dec.istitle2=1;
     [self presentViewController:dec animated:YES completion:nil];
     
 }
@@ -158,8 +160,8 @@
 {
     DetailViewController *dec =[[DetailViewController alloc]initWithNibName:@"DetailViewController" bundle:nil];
     dec.selectedRow=lblbtn3.tag;
-    dec.isimage=1;
-    dec.istitle=1;
+    dec.isimage3=1;
+    dec.istitle3=1;
     [self presentViewController:dec animated:YES completion:nil];
 }
 
@@ -167,16 +169,16 @@
 {
     DetailViewController *dec =[[DetailViewController alloc]initWithNibName:@"DetailViewController" bundle:nil];
     dec.selectedRow=lblbtn4.tag;
-    dec.isimage=1;
-    dec.istitle=1;
+    dec.isimage4=1;
+    dec.istitle4=1;
     [self presentViewController:dec animated:YES completion:nil];
 }
 -(void)lbl5pressed
 {
     DetailViewController *dec =[[DetailViewController alloc]initWithNibName:@"DetailViewController" bundle:nil];
     dec.selectedRow=lblbtn5.tag;
-    dec.isimage=1;
-    dec.istitle=1;
+    dec.isimage5=1;
+    dec.istitle5=1;
     [self presentViewController:dec animated:YES completion:nil];
 }
 
@@ -202,18 +204,21 @@
 }
 
 - (IBAction)menu:(UIButton *)sender
-{
+{   tableViewbar.hidden=NO;
     tableView.hidden=NO;
-    [self.view bringSubviewToFront:tableView];
+    [self.view bringSubviewToFront:tableViewbar];
+    
     if (!isTableViewOpen)
         
     {
         isTableViewOpen=true;
-        [tableView setFrame:CGRectMake(0,64,0,471)];
+        [tableViewbar setFrame:CGRectMake(0,62,0,490)];
+        [tableView setFrame:CGRectMake(0,0,0,474)];
         [UIView beginAnimations:@"TableAnimation" context:NULL];
         [UIView setAnimationDelegate:self];
         [UIView setAnimationDuration:0.2];
-        [tableView setFrame:CGRectMake(0,64,235,471)];
+        [tableViewbar setFrame:CGRectMake(0,62,245,484)];
+        [tableView setFrame:CGRectMake(0,0,235,474)];
         [UIView commitAnimations];
 
         
@@ -221,6 +226,7 @@
     else
     {
         isTableViewOpen=false;
+        tableViewbar.hidden=YES;
         tableView.hidden=YES;
         
         

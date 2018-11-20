@@ -14,6 +14,7 @@
 - (IBAction)menu:(UIButton *)sender;
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 
+@property (strong, nonatomic) IBOutlet UIView *tableViewbar;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 

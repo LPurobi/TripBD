@@ -18,8 +18,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(strong,nonatomic)NSMutableArray *arrdimg;
 @property (strong,nonatomic)NSMutableArray *arrtitle;
-@property int istitle;
-@property int isimage;
+
+@property int istitle1;
+@property int isimage1;
+
+@property int istitle2;
+@property int isimage2;
+
+@property int istitle3;
+@property int isimage3;
+
+@property int istitle4;
+@property int isimage4;
+
+@property int istitle5;
+@property int isimage5;
+
 @property int selectedRow;
 
 @end
