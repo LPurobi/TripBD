@@ -27,6 +27,10 @@
 		CEC7484F21A319B200C70145 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC7484D21A319B200C70145 /* DetailViewController.m */; };
 		CEC7485021A319B200C70145 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC7484E21A319B200C70145 /* DetailViewController.xib */; };
 		CEC7485221A31EF800C70145 /* golden_temple.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEC7485121A31EF800C70145 /* golden_temple.jpg */; };
+		CEC7485421A3E6B600C70145 /* Ahsan_Manzil.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEC7485321A3E6B600C70145 /* Ahsan_Manzil.jpg */; };
+		CEC7485621A3E6C000C70145 /* bagha.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CEC7485521A3E6C000C70145 /* bagha.jpeg */; };
+		CEC7485821A3E6D600C70145 /* shat_gambuj.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CEC7485721A3E6D600C70145 /* shat_gambuj.jpeg */; };
+		CEC7485A21A3E6DD00C70145 /* tara.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEC7485921A3E6DD00C70145 /* tara.jpg */; };
 		CEC776C121917ED900C5F5B9 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC776C021917ED800C5F5B9 /* 3.png */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +61,10 @@
 		CEC7484D21A319B200C70145 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		CEC7484E21A319B200C70145 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		CEC7485121A31EF800C70145 /* golden_temple.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = golden_temple.jpg; path = ../../../golden_temple.jpg; sourceTree = "<group>"; };
+		CEC7485321A3E6B600C70145 /* Ahsan_Manzil.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Ahsan_Manzil.jpg; path = ../../../Ahsan_Manzil.jpg; sourceTree = "<group>"; };
+		CEC7485521A3E6C000C70145 /* bagha.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bagha.jpeg; path = ../../../bagha.jpeg; sourceTree = "<group>"; };
+		CEC7485721A3E6D600C70145 /* shat_gambuj.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = shat_gambuj.jpeg; path = ../../../shat_gambuj.jpeg; sourceTree = "<group>"; };
+		CEC7485921A3E6DD00C70145 /* tara.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = tara.jpg; path = ../../../tara.jpg; sourceTree = "<group>"; };
 		CEC776C021917ED800C5F5B9 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,10 +104,10 @@
 				50236B8E21899A9F009282A3 /* AppDelegate.h */,
 				50236B8F21899A9F009282A3 /* AppDelegate.m */,
 				50236B9121899A9F009282A3 /* ViewController.h */,
+				50236B9221899A9F009282A3 /* ViewController.m */,
 				CEC7484C21A319B200C70145 /* DetailViewController.h */,
 				CEC7484D21A319B200C70145 /* DetailViewController.m */,
 				CEC7484E21A319B200C70145 /* DetailViewController.xib */,
-				50236B9221899A9F009282A3 /* ViewController.m */,
 				CEC7484721A1DB6E00C70145 /* ExpandingCell.xib */,
 				CEC7484921A1DBDC00C70145 /* ExpandingCell.h */,
 				CEC7484A21A1DBDC00C70145 /* ExpandingCell.m */,
@@ -115,6 +123,10 @@
 		CE72646B219DE086008A356A /* images */ = {
 			isa = PBXGroup;
 			children = (
+				CEC7485521A3E6C000C70145 /* bagha.jpeg */,
+				CEC7485921A3E6DD00C70145 /* tara.jpg */,
+				CEC7485721A3E6D600C70145 /* shat_gambuj.jpeg */,
+				CEC7485321A3E6B600C70145 /* Ahsan_Manzil.jpg */,
 				CE7B89D9219D7A17005E9BFA /* back.png */,
 				CE7B89D5219B4180005E9BFA /* menu.png */,
 				CE7B89D7219D6DAF005E9BFA /* map.png */,
@@ -198,13 +210,17 @@
 				50236B9B21899AA1009282A3 /* LaunchScreen.storyboard in Resources */,
 				CE7B89D1219B08F0005E9BFA /* down.png in Resources */,
 				50236B9821899AA1009282A3 /* Assets.xcassets in Resources */,
+				CEC7485421A3E6B600C70145 /* Ahsan_Manzil.jpg in Resources */,
+				CEC7485621A3E6C000C70145 /* bagha.jpeg in Resources */,
 				CEC7485221A31EF800C70145 /* golden_temple.jpg in Resources */,
+				CEC7485A21A3E6DD00C70145 /* tara.jpg in Resources */,
 				50236BA521899CA5009282A3 /* Beautiful-Bangladesh-English.png in Resources */,
 				CE7B89D8219D6DAF005E9BFA /* map.png in Resources */,
 				CE56A55D2189FBC300E67758 /* visitbanla.png in Resources */,
 				CEC7484821A1DB6E00C70145 /* ExpandingCell.xib in Resources */,
 				CE7B89D6219B4180005E9BFA /* menu.png in Resources */,
 				CEC7485021A319B200C70145 /* DetailViewController.xib in Resources */,
+				CEC7485821A3E6D600C70145 /* shat_gambuj.jpeg in Resources */,
 				CE7B89DA219D7A17005E9BFA /* back.png in Resources */,
 				CEC776C121917ED900C5F5B9 /* 3.png in Resources */,
 				CE7B89CF219B08E8005E9BFA /* up.png in Resources */,

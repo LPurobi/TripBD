@@ -23,11 +23,19 @@
 
 @property(strong,nonatomic)NSMutableArray *arrimg;
 @property(strong,nonatomic)NSMutableArray *arrtitle;
-@property(strong,nonatomic)NSMutableArray *arrsubtitle;
+@property(strong,nonatomic)NSMutableArray *arrsubtitle1;
+@property(strong,nonatomic)NSMutableArray *arrsubtitle2;
+@property(strong,nonatomic)NSMutableArray *arrsubtitle3;
+@property(strong,nonatomic)NSMutableArray *arrsubtitle4;
+@property(strong,nonatomic)NSMutableArray *arrsubtitle5;
+
 @property int  selectedIndex;
 
 @property(strong,nonatomic)UIButton *lblbtn1;
 @property(strong,nonatomic)UIButton *lblbtn2;
+@property(strong,nonatomic)UIButton *lblbtn3;
+@property(strong,nonatomic)UIButton *lblbtn4;
+@property(strong,nonatomic)UIButton *lblbtn5;
 
 
 

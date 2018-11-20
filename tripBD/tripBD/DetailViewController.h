@@ -17,8 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UITextView *txtdetail;
 
 @property(strong,nonatomic)NSMutableArray *arrdimg;
-@property int isnumber;
-@property int isfruit;
+@property (strong,nonatomic)NSMutableArray *arrtitle;
+@property int istitle;
+@property int isimage;
 @property int selectedRow;
 
 @end

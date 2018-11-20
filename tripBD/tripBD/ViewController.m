@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "ExpandingCell.h"
+#import "DetailViewController.h"
 @interface ViewController ()
 {
 //    BOOL isSideViewOpen;
@@ -18,7 +19,7 @@
 @end
 
 @implementation ViewController
-@synthesize tableView,arrimg,arrtitle,arrsubtitle,selectedIndex;
+@synthesize tableView,arrimg,arrtitle,arrsubtitle1,arrsubtitle2,arrsubtitle3,arrsubtitle4,arrsubtitle5,selectedIndex,lblbtn1,lblbtn2,lblbtn3,lblbtn4,lblbtn5;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,7 +32,11 @@
     }
     
     arrtitle=[[NSMutableArray alloc]initWithObjects:@"Religious",@"Historical",@"Recreational",@"Natural",@"For Kids", nil];
-    arrsubtitle=[[NSMutableArray alloc]initWithObjects:@"GoldenTemple",@"rajbon bihar",@"himchori",@"nilgiri",@"ramna park", nil];
+    arrsubtitle1=[[NSMutableArray alloc]initWithObjects:@"GoldenTemple",@"rajbon bihar",@"himchori",@"alu tila",@"ramna park", nil];
+    arrsubtitle2=[[NSMutableArray alloc]initWithObjects:@"tara masjid",@"maynamoti",@"sona diya",@"richang jhorna",@"nandon park", nil];
+    arrsubtitle3=[[NSMutableArray alloc]initWithObjects:@"shat gambuj mosque",@"karjon hall",@"teknaf",@"omiyakhum jhorna",@"greenland park", nil];
+    arrsubtitle4=[[NSMutableArray alloc]initWithObjects:@"ahsan manjil",@"lalbag kella",@"nafakhum jhorna",@"boga lake",@"rasel park", nil];
+    arrsubtitle5=[[NSMutableArray alloc]initWithObjects:@"bagha masjid",@"bongo bhobon",@"jaflong",@"prantik lake",@"jinda park", nil];
     
     
     
@@ -73,8 +78,21 @@
     }
     //cell.img.image=arrimg[indexPath.row];
     cell.Title.text=arrtitle[indexPath.row];
-    cell.subtitle1.text=arrsubtitle[indexPath.row];
-    cell.subtitle2.text=arrsubtitle[indexPath.row];
+    cell.subtitle1.text=arrsubtitle1[indexPath.row];
+    cell.subtitle2.text=arrsubtitle2[indexPath.row];
+    cell.subtitle3.text=arrsubtitle3[indexPath.row];
+    cell.subtitle4.text=arrsubtitle4[indexPath.row];
+    cell.subtitle5.text=arrsubtitle5[indexPath.row];
+    lblbtn1=cell.subbtn1;
+    lblbtn2=cell.subbtn2;
+    lblbtn3=cell.subbtn3;
+    lblbtn4=cell.subbtn4;
+    lblbtn5=cell.subbtn5;
+    lblbtn1.tag=indexPath.row;
+    lblbtn2.tag=indexPath.row;
+    lblbtn3.tag=indexPath.row;
+    lblbtn4.tag=indexPath.row;
+    lblbtn5.tag=indexPath.row;
     return cell;
     
 }
@@ -82,7 +100,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (selectedIndex ==indexPath.row) {
-        return 100;
+        return 200;
     }
     else
     {
@@ -107,7 +125,65 @@
     }
     selectedIndex=indexPath.row;
     [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    
+    [lblbtn1 addTarget:self action:@selector(lbl1pressed) forControlEvents:UIControlEventTouchDown];
+    [lblbtn2 addTarget:self action:@selector(lbl2pressed) forControlEvents:UIControlEventTouchDown];
+    [lblbtn3 addTarget:self action:@selector(lbl3pressed) forControlEvents:UIControlEventTouchDown];
+    [lblbtn4 addTarget:self action:@selector(lbl4pressed) forControlEvents:UIControlEventTouchDown];
+    [lblbtn5 addTarget:self action:@selector(lbl5pressed) forControlEvents:UIControlEventTouchDown];
+    
 }
+
+
+-(void)lbl1pressed
+{
+    DetailViewController *dec =[[DetailViewController alloc]initWithNibName:@"DetailViewController" bundle:nil];
+    dec.selectedRow=lblbtn1.tag;
+    dec.isimage=1;
+    dec.istitle=1;
+    [self presentViewController:dec animated:YES completion:nil];
+}
+
+-(void)lbl2pressed
+{
+    DetailViewController *dec =[[DetailViewController alloc]initWithNibName:@"DetailViewController" bundle:nil];
+    dec.selectedRow=lblbtn2.tag;
+    dec.isimage=1;
+    dec.istitle=1;
+    [self presentViewController:dec animated:YES completion:nil];
+    
+}
+
+-(void)lbl3pressed
+{
+    DetailViewController *dec =[[DetailViewController alloc]initWithNibName:@"DetailViewController" bundle:nil];
+    dec.selectedRow=lblbtn3.tag;
+    dec.isimage=1;
+    dec.istitle=1;
+    [self presentViewController:dec animated:YES completion:nil];
+}
+
+-(void)lbl4pressed
+{
+    DetailViewController *dec =[[DetailViewController alloc]initWithNibName:@"DetailViewController" bundle:nil];
+    dec.selectedRow=lblbtn4.tag;
+    dec.isimage=1;
+    dec.istitle=1;
+    [self presentViewController:dec animated:YES completion:nil];
+}
+-(void)lbl5pressed
+{
+    DetailViewController *dec =[[DetailViewController alloc]initWithNibName:@"DetailViewController" bundle:nil];
+    dec.selectedRow=lblbtn5.tag;
+    dec.isimage=1;
+    dec.istitle=1;
+    [self presentViewController:dec animated:YES completion:nil];
+}
+
+
+
+
+
 
 
 - (void)didReceiveMemoryWarning {
