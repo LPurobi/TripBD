@@ -13,11 +13,25 @@
 @end
 
 @implementation AppDelegate
+@synthesize strpath;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self copyandpaste];
     return YES;
+}
+
+-(void)copyandpaste
+{
+    NSArray *arr1 = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); //Search in Array
+    NSString *str1 =[arr1 objectAtIndex:0]; //store the path in 0 index
+    strpath =[str1 stringByAppendingPathComponent:@"TripBDdatabase.sqlite"];
+    if (![[NSFileManager defaultManager]fileExistsAtPath:strpath]) {
+        NSString *local =[[NSBundle mainBundle]pathForResource:@"TripBDdatabase" ofType:@"sqlite"];
+        [[NSFileManager defaultManager]copyItemAtPath:local toPath:strpath error:nil];
+    }
+    NSLog(@"%@", strpath);
 }
 
 

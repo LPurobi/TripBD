@@ -42,6 +42,8 @@
 		CEBA29B421A4378600D22099 /* sonadia.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEBA29B321A4378600D22099 /* sonadia.jpg */; };
 		CEBA29B621A4378C00D22099 /* Teknaf.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEBA29B521A4378C00D22099 /* Teknaf.jpg */; };
 		CEBA29B821A4379300D22099 /* zinda.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEBA29B721A4379200D22099 /* zinda.jpg */; };
+		CEBA29BE21A47AF700D22099 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBA29BD21A47AF700D22099 /* libsqlite3.tbd */; };
+		CEBA29C121A480D200D22099 /* dboperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBA29C021A480D200D22099 /* dboperation.m */; };
 		CEC7484821A1DB6E00C70145 /* ExpandingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC7484721A1DB6E00C70145 /* ExpandingCell.xib */; };
 		CEC7484B21A1DBDC00C70145 /* ExpandingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC7484A21A1DBDC00C70145 /* ExpandingCell.m */; };
 		CEC7484F21A319B200C70145 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC7484D21A319B200C70145 /* DetailViewController.m */; };
@@ -68,6 +70,7 @@
 		50236BA421899CA5009282A3 /* Beautiful-Bangladesh-English.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Beautiful-Bangladesh-English.png"; sourceTree = "<group>"; };
 		CE56A55C2189FBC200E67758 /* visitbanla.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = visitbanla.png; sourceTree = "<group>"; };
 		CE56A55E2189FD6700E67758 /* ict.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ict.png; sourceTree = "<group>"; };
+		CE6686DF21A90A910008F63A /* TripBDdatabase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = TripBDdatabase.sqlite; path = ../../TripBDdatabase.sqlite; sourceTree = "<group>"; };
 		CE7B89CE219B08E7005E9BFA /* up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up.png; sourceTree = "<group>"; };
 		CE7B89D0219B08F0005E9BFA /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
 		CE7B89D5219B4180005E9BFA /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
@@ -94,6 +97,9 @@
 		CEBA29B321A4378600D22099 /* sonadia.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sonadia.jpg; path = ../../../sonadia.jpg; sourceTree = "<group>"; };
 		CEBA29B521A4378C00D22099 /* Teknaf.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Teknaf.jpg; path = ../../../Teknaf.jpg; sourceTree = "<group>"; };
 		CEBA29B721A4379200D22099 /* zinda.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = zinda.jpg; path = ../../../zinda.jpg; sourceTree = "<group>"; };
+		CEBA29BD21A47AF700D22099 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		CEBA29BF21A480D200D22099 /* dboperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dboperation.h; sourceTree = "<group>"; };
+		CEBA29C021A480D200D22099 /* dboperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dboperation.m; sourceTree = "<group>"; };
 		CEC7484721A1DB6E00C70145 /* ExpandingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpandingCell.xib; sourceTree = "<group>"; };
 		CEC7484921A1DBDC00C70145 /* ExpandingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExpandingCell.h; sourceTree = "<group>"; };
 		CEC7484A21A1DBDC00C70145 /* ExpandingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpandingCell.m; sourceTree = "<group>"; };
@@ -113,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEBA29BE21A47AF700D22099 /* libsqlite3.tbd in Frameworks */,
 				CE7B89DD219D8708005E9BFA /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,9 +147,12 @@
 		50236B8D21899A9F009282A3 /* tripBD */ = {
 			isa = PBXGroup;
 			children = (
+				CE6686DF21A90A910008F63A /* TripBDdatabase.sqlite */,
 				CE72646B219DE086008A356A /* images */,
 				50236B8E21899A9F009282A3 /* AppDelegate.h */,
 				50236B8F21899A9F009282A3 /* AppDelegate.m */,
+				CEBA29BF21A480D200D22099 /* dboperation.h */,
+				CEBA29C021A480D200D22099 /* dboperation.m */,
 				50236B9121899A9F009282A3 /* ViewController.h */,
 				50236B9221899A9F009282A3 /* ViewController.m */,
 				CEC7484C21A319B200C70145 /* DetailViewController.h */,
@@ -204,6 +214,7 @@
 		CE7B89DB219D8706005E9BFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CEBA29BD21A47AF700D22099 /* libsqlite3.tbd */,
 				CE7B89DC219D8708005E9BFA /* MapKit.framework */,
 			);
 			name = Frameworks;
@@ -320,6 +331,7 @@
 				50236B9321899A9F009282A3 /* ViewController.m in Sources */,
 				50236B9E21899AA1009282A3 /* main.m in Sources */,
 				50236B9021899A9F009282A3 /* AppDelegate.m in Sources */,
+				CEBA29C121A480D200D22099 /* dboperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
