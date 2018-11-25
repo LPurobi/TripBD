@@ -1,0 +1,267 @@
+<html><head>
+	<title>SQLite Query Language: SELECT</title>
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="assets/css/docs.css" rel="stylesheet">
+    <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if IE 8]>
+    	<link rel="stylesheet" type="text/css" href="assets/css/ie.css" />
+    <![endif]-->
+</head>
+<body>
+
+<!--TOP-->
+    <div class="top_line"></div>
+
+ <!--HEADER-->
+<header>
+        <div class="container">
+        <div class="row">
+                <div class="span12">
+                    <nav id="main-nav">
+                        <ul id="menu">
+                            <li class="current"><a href="lang.html">SQLite</a></li>
+                            <li><a href="#">COMMON</a>
+                                <ul>
+									<li><a href="lang_delete.html">DELETE</a></li>
+									<li><a href="lang_insert.html">INSERT</a></li>
+									<li><a href="lang_replace.html">REPLACE</a></li>
+									<li><a href="lang_select.html">SELECT</a></li>
+									<li><a href="lang_update.html">UPDATE</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">CREATE</a>
+                            	<ul>
+                            		<li><a href="lang_altertable.html">ALTER TABLE</a></li>
+                            		<li><a href="lang_createindex.html">CREATE INDEX</a></li>
+									<li><a href="lang_createtable.html">CREATE TABLE</a></li>
+									<li><a href="lang_createtrigger.html">CREATE TRIGGER</a></li>
+									<li><a href="lang_createview.html">CREATE VIEW</a></li>
+									<li><a href="lang_createvtab.html">CREATE VIRTUAL TABLE</a></li>
+                            	</ul>
+                            </li>
+                            <li><a href="#">DROP</a>
+                            	<ul>
+                            		<li><a href="lang_dropindex.html">DROP INDEX</a></li>
+									<li><a href="lang_droptable.html">DROP TABLE</a></li>
+									<li><a href="lang_droptrigger.html">DROP TRIGGER</a></li>
+									<li><a href="lang_dropview.html">DROP VIEW</a></li>
+                            	</ul>
+                            </li>
+                            <li><a href="#">TRANSACTIONS</a>
+                            	<ul>
+                            		<li><a href="lang_transaction.html">BEGIN TRANSACTION</a></li>
+                            		<li><a href="lang_transaction.html">COMMIT TRANSACTION</a></li>
+                            		<li><a href="lang_transaction.html">END TRANSACTION</a></li>
+                            		<li><a href="lang_savepoint.html">RELEASE SAVEPOINT</a></li>
+                            		<li><a href="lang_transaction.html">ROLLBACK TRANSACTION</a></li>
+									<li><a href="lang_savepoint.html">SAVEPOINT</a></li>
+                            	</ul>
+                            </li>
+                             <li><a href="#">OTHERS</a>
+                            	<ul>
+                            		<li><a href="lang_analyze.html">ANALYZE</a></li>
+									<li><a href="lang_attach.html">ATTACH DATABASE</a></li>
+									<li><a href="lang_detach.html">DETACH DATABASE</a></li>
+									<li><a href="lang_explain.html">EXPLAIN</a></li>
+									<li><a href="lang_indexedby.html">INDEXED BY</a></li>
+									<li><a href="lang_conflict.html">ON CONFLICT clause</a></li>
+									<li><a href="pragma.html#syntax">PRAGMA</a></li>
+									<li><a href="lang_reindex.html">REINDEX</a></li>
+									<li><a href="lang_vacuum.html">VACUUM</a></li>
+                            	</ul>
+                            </li>
+                            <li><a href="#">FUNCTIONS</a>
+                            	<ul>
+                            		<li><a href="lang_aggfunc.html">Aggregate</a></li>
+                            		<li><a href="lang_comment.html">Comment</a></li>
+                            		<li><a href="lang_corefunc.html">Core</a></li>
+                            		<li><a href="lang_datefunc.html">Date and Time</a></li>
+                            		<li><a href="lang_expr.html">Expression</a></li>
+                            		<li><a href="lang_keywords.html">Keywords</a></li>
+                            	</ul>
+                            </li>
+                        </ul>
+                    </nav><!-- end #main-nav -->
+                </div>
+            </div>
+		</div>
+	</header>
+	<!--/HEADER-->
+	
+	<!--WELCOME AREA-->
+    <div class="gray_bg">
+        <div class="container">
+            <div class="row welcome">
+                <div class="span12"><h1>SELECT</h1><br /></div>
+            </div>
+        </div>
+    </div>
+    <!--/WELCOME AREA-->
+	<div class="container inner_content">
+	<section id="typography">
+	<div class="row">
+    <div class="span12">
+    
+    <br /><br /><br />
+    
+<h4><a href="syntaxdiagrams.html#select-stmt">select-stmt:</a></h4>
+<img alt="syntax diagram select-stmt" src="images/syntax/select-stmt.gif"></img>
+<br /><br />
+<h4><a href="syntaxdiagrams.html#select-core">select-core:</a></h4>
+<img alt="syntax diagram select-core" src="images/syntax/select-core.gif"></img>
+<br /><br />
+<h4><a href="syntaxdiagrams.html#result-column">result-column:</a></h4>
+<img alt="syntax diagram result-column" src="images/syntax/result-column.gif"></img>
+<br /><br />
+<h4><a href="syntaxdiagrams.html#join-source">join-source:</a></h4>
+<img alt="syntax diagram join-source" src="images/syntax/join-source.gif"></img>
+<br /><br />
+<h4><a href="syntaxdiagrams.html#single-source">single-source:</a></h4>
+<img alt="syntax diagram single-source" src="images/syntax/single-source.gif"></img>
+<br /><br />
+<h4><a href="syntaxdiagrams.html#join-op">join-op:</a></h4>
+<img alt="syntax diagram join-op" src="images/syntax/join-op.gif"></img>
+<br /><br />
+<h4><a href="syntaxdiagrams.html#join-constraint">join-constraint:</a></h4>
+<img alt="syntax diagram join-constraint" src="images/syntax/join-constraint.gif"></img>
+<br /><br />
+<h4><a href="syntaxdiagrams.html#ordering-term">ordering-term:</a></h4>
+<img alt="syntax diagram ordering-term" src="images/syntax/ordering-term.gif"></img>
+<br /><br />
+<h4><a href="syntaxdiagrams.html#compound-operator">compound-operator:</a></h4>
+<img alt="syntax diagram compound-operator" src="images/syntax/compound-operator.gif"></img>
+
+<br /><br /><br />
+<p>The SELECT statement is used to query the database.  The
+result of a SELECT is zero or more rows of data where each row
+has a fixed number of columns.  The number of columns in the
+result is specified by the expression list in between the
+SELECT and FROM keywords.  Any arbitrary expression can be used
+as a result.  If a result expression is <font color="#2c2cf0"><big>*</big></font> then all columns of all tables are substituted
+for that one expression.  If the expression is the name of
+a table followed by <font color="#2c2cf0"><big>.*</big></font> then the result is all columns
+in that one table.</p>
+
+<p>The DISTINCT keyword causes a subset of result rows to be returned, 
+in which each result row is different.  NULL values are not treated as 
+distinct from each other.  The default behavior is that all result rows 
+be returned, which can be made explicit with the keyword ALL.</p>
+
+<p>The query is executed against one or more tables specified after
+the FROM keyword.  If multiple tables names are separated by commas,
+then the query is against the cross join of the various tables.
+The full SQL-92 join syntax can also be used to specify joins.
+A sub-query
+in parentheses may be substituted for any table name in the FROM clause.
+The entire FROM clause may be omitted, in which case the result is a
+single row consisting of the values of the expression list.
+</p>
+
+<p>The WHERE clause can be used to limit the number of rows over
+which the query operates.</p>
+
+<p>The GROUP BY clause causes one or more rows of the result to
+be combined into a single row of output.  This is especially useful
+when the result contains aggregate functions.  The expressions in
+the GROUP BY clause do <em>not</em> have to be expressions that
+appear in the result.  The HAVING clause is similar to WHERE except
+that HAVING applies after grouping has occurred.  The HAVING expression
+may refer to values, even aggregate functions, that are not in the result.</p>
+
+<p>The ORDER BY clause causes the output rows to be sorted.  
+The argument to ORDER BY is a list of expressions that are used as the
+key for the sort.  The expressions do not have to be part of the
+result for a simple SELECT, but in a compound SELECT each sort
+expression must exactly match one of the result columns.  Each
+sort expression may be optionally followed by a COLLATE keyword and
+the name of a collating function used for ordering text and/or
+keywords ASC or DESC to specify the sort order.</p>
+
+<p>Each term of an ORDER BY expression is processed as follows:</p>
+
+<ol>
+<li><p>If the ORDER BY expression is a constant integer K then the
+output is ordered by the K-th column of the result set.</p></li>
+<li><p>If the ORDER BY expression is an identifier and one of the
+output columns has an alias by the same name, then the output is
+ordered by the identified column.</p></li>
+<li><p>Otherwise, the ORDER BY expression is evaluated and the output 
+is ordered by the value of that expression.</p></li>
+</ol>
+
+<p>In a compound SELECT statement, the third ORDER BY matching rule
+requires that the expression be identical to one of the columns in
+the result set.  The three rules are first applied to the left-most
+SELECT in the compound.  If a match is found, the search stops.  Otherwise,
+the next SELECT to the right is tried.  This continues until a match
+is found.  Each term of the ORDER BY clause is processed separately 
+and may come from different SELECT statements in the compound.</p>
+
+<p>The LIMIT clause places an upper bound on the number of rows
+returned in the result.  A negative LIMIT indicates no upper bound.
+The optional OFFSET following LIMIT specifies how many
+rows to skip at the beginning of the result set.
+In a compound query, the LIMIT clause may only appear on the
+final SELECT statement.
+The limit is applied to the entire query not
+to the individual SELECT statement to which it is attached.
+Note that if the OFFSET keyword is used in the LIMIT clause, then the
+limit is the first number and the offset is the second number.  If a
+comma is used instead of the OFFSET keyword, then the offset is the
+first number and the limit is the second number.  This seeming
+contradition is intentional - it maximizes compatibility with legacy
+SQL database systems.
+</p>
+
+<p>A compound SELECT is formed from two or more simple SELECTs connected
+by one of the operators UNION, UNION ALL, INTERSECT, or EXCEPT.  In
+a compound SELECT, all the constituent SELECTs must specify the
+same number of result columns.  There may be only a single ORDER BY
+clause at the end of the compound SELECT.  The UNION and UNION ALL
+operators combine the results of the SELECTs to the right and left into
+a single big table.  The difference is that in UNION all result rows
+are distinct where in UNION ALL there may be duplicates.
+The INTERSECT operator takes the intersection of the results of the
+left and right SELECTs.  EXCEPT takes the result of left SELECT after
+removing the results of the right SELECT.  When three or more SELECTs
+are connected into a compound, they group from left to right.</p>
+
+</div>
+	</div>
+
+
+	<!--/BOTTOM LINE-->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/google-code-prettify/prettify.js"></script>
+    <script src="assets/js/bootstrap-transition.js"></script>
+    <script src="assets/js/bootstrap-alert.js"></script>
+    <script src="assets/js/bootstrap-modal.js"></script>
+    <script src="assets/js/bootstrap-dropdown.js"></script>
+    <script src="assets/js/bootstrap-scrollspy.js"></script>
+    <script src="assets/js/bootstrap-tab.js"></script>
+    <script src="assets/js/bootstrap-tooltip.js"></script>
+    <script src="assets/js/bootstrap-popover.js"></script>
+    <script src="assets/js/bootstrap-button.js"></script>
+    <script src="assets/js/bootstrap-collapse.js"></script>
+    <script src="assets/js/bootstrap-carousel.js"></script>
+    <script src="assets/js/bootstrap-typeahead.js"></script>
+    <script src="assets/js/jquery.easing.1.3.js"></script>
+    <script src="assets/js/jquery.slabtext.min.js"></script>
+    <script src="assets/js/jquery.flexslider-min.js"></script>
+    <script src="assets/js/superfish-menu/superfish.js"></script>
+    <script src="assets/js/plugin.js"></script>
+    <script src="assets/js/jquery.prettyPhoto.js"></script>
+    <script src="assets/js/jquery.gmap.min.js"></script>
+    <script src="assets/js/jquery.preloader.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/application.js"></script>
+</body></html>

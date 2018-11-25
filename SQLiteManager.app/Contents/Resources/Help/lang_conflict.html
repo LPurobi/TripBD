@@ -1,0 +1,227 @@
+<html><head>
+	<title>SQLite Query Language: ON CONFLICT clause</title>
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="assets/css/docs.css" rel="stylesheet">
+    <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if IE 8]>
+    	<link rel="stylesheet" type="text/css" href="assets/css/ie.css" />
+    <![endif]-->
+</head>
+<body>
+
+<!--TOP-->
+    <div class="top_line"></div>
+
+ <!--HEADER-->
+<header>
+        <div class="container">
+        <div class="row">
+                <div class="span12">
+                    <nav id="main-nav">
+                        <ul id="menu">
+                            <li class="current"><a href="lang.html">SQLite</a></li>
+                            <li><a href="#">COMMON</a>
+                                <ul>
+									<li><a href="lang_delete.html">DELETE</a></li>
+									<li><a href="lang_insert.html">INSERT</a></li>
+									<li><a href="lang_replace.html">REPLACE</a></li>
+									<li><a href="lang_select.html">SELECT</a></li>
+									<li><a href="lang_update.html">UPDATE</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">CREATE</a>
+                            	<ul>
+                            		<li><a href="lang_altertable.html">ALTER TABLE</a></li>
+                            		<li><a href="lang_createindex.html">CREATE INDEX</a></li>
+									<li><a href="lang_createtable.html">CREATE TABLE</a></li>
+									<li><a href="lang_createtrigger.html">CREATE TRIGGER</a></li>
+									<li><a href="lang_createview.html">CREATE VIEW</a></li>
+									<li><a href="lang_createvtab.html">CREATE VIRTUAL TABLE</a></li>
+                            	</ul>
+                            </li>
+                            <li><a href="#">DROP</a>
+                            	<ul>
+                            		<li><a href="lang_dropindex.html">DROP INDEX</a></li>
+									<li><a href="lang_droptable.html">DROP TABLE</a></li>
+									<li><a href="lang_droptrigger.html">DROP TRIGGER</a></li>
+									<li><a href="lang_dropview.html">DROP VIEW</a></li>
+                            	</ul>
+                            </li>
+                            <li><a href="#">TRANSACTIONS</a>
+                            	<ul>
+                            		<li><a href="lang_transaction.html">BEGIN TRANSACTION</a></li>
+                            		<li><a href="lang_transaction.html">COMMIT TRANSACTION</a></li>
+                            		<li><a href="lang_transaction.html">END TRANSACTION</a></li>
+                            		<li><a href="lang_savepoint.html">RELEASE SAVEPOINT</a></li>
+                            		<li><a href="lang_transaction.html">ROLLBACK TRANSACTION</a></li>
+									<li><a href="lang_savepoint.html">SAVEPOINT</a></li>
+                            	</ul>
+                            </li>
+                             <li><a href="#">OTHERS</a>
+                            	<ul>
+                            		<li><a href="lang_analyze.html">ANALYZE</a></li>
+									<li><a href="lang_attach.html">ATTACH DATABASE</a></li>
+									<li><a href="lang_detach.html">DETACH DATABASE</a></li>
+									<li><a href="lang_explain.html">EXPLAIN</a></li>
+									<li><a href="lang_indexedby.html">INDEXED BY</a></li>
+									<li><a href="lang_conflict.html">ON CONFLICT clause</a></li>
+									<li><a href="pragma.html#syntax">PRAGMA</a></li>
+									<li><a href="lang_reindex.html">REINDEX</a></li>
+									<li><a href="lang_vacuum.html">VACUUM</a></li>
+                            	</ul>
+                            </li>
+                            <li><a href="#">FUNCTIONS</a>
+                            	<ul>
+                            		<li><a href="lang_aggfunc.html">Aggregate</a></li>
+                            		<li><a href="lang_comment.html">Comment</a></li>
+                            		<li><a href="lang_corefunc.html">Core</a></li>
+                            		<li><a href="lang_datefunc.html">Date and Time</a></li>
+                            		<li><a href="lang_expr.html">Expression</a></li>
+                            		<li><a href="lang_keywords.html">Keywords</a></li>
+                            	</ul>
+                            </li>
+                        </ul>
+                    </nav><!-- end #main-nav -->
+                </div>
+            </div>
+		</div>
+	</header>
+	<!--/HEADER-->
+	
+	<!--WELCOME AREA-->
+    <div class="gray_bg">
+        <div class="container">
+            <div class="row welcome">
+                <div class="span12"><h1>ON CONFLICT clause</h1><br /></div>
+            </div>
+        </div>
+    </div>
+    <!--/WELCOME AREA-->
+	
+	 <!--MAIN CONTENT AREA-->
+    <div class="container inner_content">
+	<section id="typography">
+	<div class="row">
+    <div class="span12">
+    
+	<h4><a href="syntaxdiagrams.html#conflict-clause">conflict-clause:</a></h4>
+	<img alt="syntax diagram conflict-clause" src="images/syntax/conflict-clause.gif"></img>
+	<br /><br /><br />
+
+
+<p>The ON CONFLICT clause is not a separate SQL command.  It is a
+non-standard clause that can appear in many other SQL commands.
+It is given its own section in this document because it is not
+part of standard SQL and therefore might not be familiar.</p>
+
+<p>The syntax for the ON CONFLICT clause is as shown above for
+the CREATE TABLE command.  For the INSERT and
+UPDATE commands, the keywords "ON CONFLICT" are replaced by "OR", to make
+the syntax seem more natural.  For example, instead of
+"INSERT ON CONFLICT IGNORE" we have "INSERT OR IGNORE".
+The keywords change but the meaning of the clause is the same
+either way.</p>
+
+<p>The ON CONFLICT clause specifies an algorithm used to resolve
+constraint conflicts.  There are five conflict resolution algorithm choices:
+ROLLBACK, ABORT, FAIL, IGNORE, and REPLACE.
+The default conflict resolution algorithm is ABORT.  This
+is what they mean:</p>
+
+<dl>
+<dt><b>ROLLBACK</b></dt>
+<dd><p>When a constraint violation occurs, an immediate ROLLBACK
+occurs, thus ending the current transaction, and the command aborts
+with a return code of SQLITE_CONSTRAINT.  If no transaction is
+active (other than the implied transaction that is created on every
+command) then this algorithm works the same as ABORT.</p></dd>
+
+<dt><b>ABORT</b></dt>
+<dd><p>When a constraint violation occurs, the command backs out
+any prior changes it might have made and aborts with a return code
+of SQLITE_CONSTRAINT.  But no ROLLBACK is executed so changes
+from prior commands within the same transaction
+are preserved.  This is the default behavior.</p></dd>
+
+<dt><b>FAIL</b></dt>
+<dd><p>When a constraint violation occurs, the command aborts with a
+return code SQLITE_CONSTRAINT.  But any changes to the database that
+the command made prior to encountering the constraint violation
+are preserved and are not backed out.  For example, if an UPDATE
+statement encountered a constraint violation on the 100th row that
+it attempts to update, then the first 99 row changes are preserved
+but changes to rows 100 and beyond never occur.</p></dd>
+
+<dt><b>IGNORE</b></dt>
+<dd><p>When a constraint violation occurs, the one row that contains
+the constraint violation is not inserted or changed.  But the command
+continues executing normally.  Other rows before and after the row that
+contained the constraint violation continue to be inserted or updated
+normally.  No error is returned when the IGNORE conflict resolution
+algorithm is used.</p></dd>
+
+<dt><b>REPLACE</b></dt>
+<dd><p>When a UNIQUE constraint violation occurs, the pre-existing rows
+that are causing the constraint violation are removed prior to inserting
+or updating the current row.  Thus the insert or update always occurs.
+The command continues executing normally following REPLACE.  
+No error is returned by the REPLACE conflict resolution.
+If a NOT NULL constraint violation occurs, the NULL value is replaced
+by the default value for that column.  If the column has no default
+value, then the ABORT algorithm is used.  If a CHECK constraint violation
+occurs then the IGNORE algorithm is used.</p>
+
+<p>When this conflict resolution strategy deletes rows in order to
+satisfy a constraint, <a href="lang_createtrigger.html">delete triggers</a> only fire if
+<a href="pragma.html#pragma_recursive_triggers">recursive triggers</a> are enabled.</p>
+
+<p>The update hook is not invoked for rows that
+are deleted by an OR REPLACE resolution.  Nor is the 
+change counter incremented.
+The exceptional behaviors defined in this paragraph might change 
+in a future release.</p>
+</dl>
+
+<p>The algorithm specified in the OR clause of a INSERT or UPDATE
+overrides any algorithm specified in a CREATE TABLE.
+If no algorithm is specified anywhere, the ABORT algorithm is used.</p>
+
+</div>
+	</div>
+
+
+	<!--/BOTTOM LINE-->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/google-code-prettify/prettify.js"></script>
+    <script src="assets/js/bootstrap-transition.js"></script>
+    <script src="assets/js/bootstrap-alert.js"></script>
+    <script src="assets/js/bootstrap-modal.js"></script>
+    <script src="assets/js/bootstrap-dropdown.js"></script>
+    <script src="assets/js/bootstrap-scrollspy.js"></script>
+    <script src="assets/js/bootstrap-tab.js"></script>
+    <script src="assets/js/bootstrap-tooltip.js"></script>
+    <script src="assets/js/bootstrap-popover.js"></script>
+    <script src="assets/js/bootstrap-button.js"></script>
+    <script src="assets/js/bootstrap-collapse.js"></script>
+    <script src="assets/js/bootstrap-carousel.js"></script>
+    <script src="assets/js/bootstrap-typeahead.js"></script>
+    <script src="assets/js/jquery.easing.1.3.js"></script>
+    <script src="assets/js/jquery.slabtext.min.js"></script>
+    <script src="assets/js/jquery.flexslider-min.js"></script>
+    <script src="assets/js/superfish-menu/superfish.js"></script>
+    <script src="assets/js/plugin.js"></script>
+    <script src="assets/js/jquery.prettyPhoto.js"></script>
+    <script src="assets/js/jquery.gmap.min.js"></script>
+    <script src="assets/js/jquery.preloader.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/application.js"></script>
+</body></html>

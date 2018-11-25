@@ -1,0 +1,1 @@
+-- Lua Version.lua-- Created with SQLiteManager 4.0.0-- On Monday, October 29, 2012Dialogs:Message(_VERSION)

@@ -1,0 +1,403 @@
+<html><head>
+	<title>SQLite Query Language: Core Functions</title>
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="assets/css/docs.css" rel="stylesheet">
+    <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if IE 8]>
+    	<link rel="stylesheet" type="text/css" href="assets/css/ie.css" />
+    <![endif]-->
+</head>
+<body>
+
+<!--TOP-->
+    <div class="top_line"></div>
+
+ <!--HEADER-->
+<header>
+        <div class="container">
+        <div class="row">
+                <div class="span12">
+                    <nav id="main-nav">
+                        <ul id="menu">
+                            <li class="current"><a href="lang.html">SQLite</a></li>
+                            <li><a href="#">COMMON</a>
+                                <ul>
+									<li><a href="lang_delete.html">DELETE</a></li>
+									<li><a href="lang_insert.html">INSERT</a></li>
+									<li><a href="lang_replace.html">REPLACE</a></li>
+									<li><a href="lang_select.html">SELECT</a></li>
+									<li><a href="lang_update.html">UPDATE</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">CREATE</a>
+                            	<ul>
+                            		<li><a href="lang_altertable.html">ALTER TABLE</a></li>
+                            		<li><a href="lang_createindex.html">CREATE INDEX</a></li>
+									<li><a href="lang_createtable.html">CREATE TABLE</a></li>
+									<li><a href="lang_createtrigger.html">CREATE TRIGGER</a></li>
+									<li><a href="lang_createview.html">CREATE VIEW</a></li>
+									<li><a href="lang_createvtab.html">CREATE VIRTUAL TABLE</a></li>
+                            	</ul>
+                            </li>
+                            <li><a href="#">DROP</a>
+                            	<ul>
+                            		<li><a href="lang_dropindex.html">DROP INDEX</a></li>
+									<li><a href="lang_droptable.html">DROP TABLE</a></li>
+									<li><a href="lang_droptrigger.html">DROP TRIGGER</a></li>
+									<li><a href="lang_dropview.html">DROP VIEW</a></li>
+                            	</ul>
+                            </li>
+                            <li><a href="#">TRANSACTIONS</a>
+                            	<ul>
+                            		<li><a href="lang_transaction.html">BEGIN TRANSACTION</a></li>
+                            		<li><a href="lang_transaction.html">COMMIT TRANSACTION</a></li>
+                            		<li><a href="lang_transaction.html">END TRANSACTION</a></li>
+                            		<li><a href="lang_savepoint.html">RELEASE SAVEPOINT</a></li>
+                            		<li><a href="lang_transaction.html">ROLLBACK TRANSACTION</a></li>
+									<li><a href="lang_savepoint.html">SAVEPOINT</a></li>
+                            	</ul>
+                            </li>
+                             <li><a href="#">OTHERS</a>
+                            	<ul>
+                            		<li><a href="lang_analyze.html">ANALYZE</a></li>
+									<li><a href="lang_attach.html">ATTACH DATABASE</a></li>
+									<li><a href="lang_detach.html">DETACH DATABASE</a></li>
+									<li><a href="lang_explain.html">EXPLAIN</a></li>
+									<li><a href="lang_indexedby.html">INDEXED BY</a></li>
+									<li><a href="lang_conflict.html">ON CONFLICT clause</a></li>
+									<li><a href="pragma.html#syntax">PRAGMA</a></li>
+									<li><a href="lang_reindex.html">REINDEX</a></li>
+									<li><a href="lang_vacuum.html">VACUUM</a></li>
+                            	</ul>
+                            </li>
+                            <li><a href="#">FUNCTIONS</a>
+                            	<ul>
+                            		<li><a href="lang_aggfunc.html">Aggregate</a></li>
+                            		<li><a href="lang_comment.html">Comment</a></li>
+                            		<li><a href="lang_corefunc.html">Core</a></li>
+                            		<li><a href="lang_datefunc.html">Date and Time</a></li>
+                            		<li><a href="lang_expr.html">Expression</a></li>
+                            		<li><a href="lang_keywords.html">Keywords</a></li>
+                            	</ul>
+                            </li>
+                        </ul>
+                    </nav><!-- end #main-nav -->
+                </div>
+            </div>
+		</div>
+	</header>
+	<!--/HEADER-->
+	
+	<!--WELCOME AREA-->
+    <div class="gray_bg">
+        <div class="container">
+            <div class="row welcome">
+                <div class="span12"><h1>Core Functions</h1><br /></div>
+            </div>
+        </div>
+    </div>
+    <!--/WELCOME AREA-->
+	
+	 <!--MAIN CONTENT AREA-->
+    <div class="container inner_content">
+	<section id="typography">
+	<div class="row">
+    <div class="span12">
+    
+
+<p>The core functions shown below are available by default. 
+<a href="lang_datefunc.html">Date &amp; Time functions</a> and
+<a href="lang_aggfunc.html">aggregate functions</a> are documented separately.  An
+application may define additional
+functions written in C and added to the database engine using
+the sqlite3_create_function() API.</p>
+
+<table border=0 cellpadding=10>
+<tr><td valign="top" align="right" width="120"><a name="abs"></a>
+abs(<i>X</i>)</td><td valign="top">
+  The abs(X) function returns the absolute value of the numeric
+  argument X.  Abs(X) returns NULL if X is NULL. 
+  Abs(X) return 0.0 if X is a string or blob
+  that cannot be converted to a numeric value.  If X is the 
+  integer -9223372036854775807 then abs(X) throws an integer overflow
+  error since there is no equivalent positive 64-bit two complement value.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="changes"></a>
+changes()</td><td valign="top">
+  The changes() function returns the number of database rows that were changed
+  or inserted or deleted by the most recently completed INSERT, DELETE,
+  or UPDATE statement, exclusive of statements in lower-level triggers.
+  The changes() SQL function is a wrapper around the sqlite3_changes()
+  C/C++ function and hence follows the same rules for counting changes.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="coalesce"></a>
+coalesce(<i>X</i>,<i>Y</i>,...)</td><td valign="top">
+  The coalesce() function returns a copy of its first non-NULL argument, or
+  NULL if all arguments are NULL.  Coalesce() must be at least 
+  2 arguments.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="glob"></a>
+glob(<i>X</i>,<i>Y</i>)</td><td valign="top">
+  The glob(X,Y) function is equivalent to the
+  expression "<b>Y GLOB X</b>".
+  Note that the X and Y arguments are reversed in the glob() function
+  relative to the infix <a href="lang_expr.html#glob">GLOB</a> operator.
+  If the sqlite3_create_function() interface is used to
+  override the glob(X,Y) function with an alternative implementation then
+  the <a href="lang_expr.html#glob">GLOB</a> operator will invoke the alternative implementation.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="ifnull"></a>
+ifnull(<i>X</i>,<i>Y</i>)</td><td valign="top">
+  The ifnull() function returns a copy of its first non-NULL argument, or
+  NULL if both arguments are NULL.  Ifnull() must have exactly 2 arguments.
+  The ifnull() function is equivalent to <a href="lang_corefunc.html#coalesce">coalesce()</a> with two arguments.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="hex"></a>
+hex(<i>X</i>)</td><td valign="top">
+  The hex() function interprets its argument as a BLOB and returns
+  a string which is the upper-case hexadecimal rendering of the content of
+  that blob.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="last_insert_rowid"></a>
+last_insert_rowid()</td><td valign="top">
+  The last_insert_rowid() function returns the <a href="lang_createtable.html#rowid">ROWID</a>
+  of the last row insert from the database connection which invoked the
+  function.
+  The last_insert_rowid() SQL function is a wrapper around the
+  sqlite3_last_insert_rowid() C/C++ interface function.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="length"></a>
+length(<i>X</i>)</td><td valign="top">
+  The length(X) function returns the length of X in 
+  characters if X is a string, or in bytes if X is a blob.
+  If X is NULL then length(X) is NULL.
+  If X is numeric then length(X) returns the length of a string
+  representation of X.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="like"></a>
+like(<i>X</i>,<i>Y</i>)<br></br>like(<i>X</i>,<i>Y</i>,<i>Z</i>)</td><td valign="top">
+  The like() function is used to implement the
+  "<b>Y LIKE X &#91;ESCAPE Z&#93;</b>" expression. 
+  If the optional ESCAPE clause is present, then the
+  like() function is invoked with three arguments.  Otherwise, it is
+  invoked with two arguments only. Note that the X and Y parameters are
+  reversed in the like() function relative to the infix <a href="lang_expr.html#like">LIKE</a> operator.
+  The sqlite3_create_function() interface can be used to override the
+  like() function and thereby change the operation of the
+  <a href="lang_expr.html#like">LIKE</a> operator.  When overriding the like() function, it may be important
+  to override both the two and three argument versions of the like() 
+  function. Otherwise, different code may be called to implement the
+  <a href="lang_expr.html#like">LIKE</a> operator depending on whether or not an ESCAPE clause was 
+  specified.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="load_extension"></a>
+load_extension(<i>X</i>)<br></br>load_extension(<i>X</i>,<i>Y</i>)</td><td valign="top">
+  The load_extension(X,Y) function loads SQLite extensions out of the shared
+  library file named X using the entry point Y.  The result of load_extension()
+  is always a NULL.  If Y is omitted then the default entry point
+  of <b>sqlite3_extension_init</b> is used.  The load_extension() function
+  raises an exception if the extension fails to load or initialize correctly.
+
+  <p>The load_extension() function will fail if the extension attempts to 
+  modify or delete a SQL function or collating sequence.  The
+  extension can add new functions or collating sequences, but cannot
+  modify or delete existing functions or collating sequences because
+  those functions and/or collating sequences might be used elsewhere
+  in the currently running SQL statement.  To load an extension that
+  changes or deletes functions or collating sequences, use the
+  sqlite3_load_extension() C-language API.</p>
+</td></tr><tr><td valign="top" align="right" width="120"><a name="lower"></a>
+lower(<i>X</i>)</td><td valign="top">
+  The lower(X) function returns a copy of string X with all ASCII characters
+  converted to lower case.  The default built-in lower() function works
+  for ASCII characters only.  To do case conversions on non-ASCII
+  characters, load the ICU extension.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="ltrim"></a>
+ltrim(<i>X</i>)<br></br>ltrim(<i>X</i>,<i>Y</i>)</td><td valign="top">
+  The ltrim(X,Y) function returns a string formed by removing any and all
+  characters that appear in Y from the left side of X.
+  If the Y argument is omitted, ltrim(X) removes spaces from the left side
+  of X.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="maxoreunc"></a>
+max(<i>X</i>,<i>Y</i>,...)</td><td valign="top">
+  The multi-argument max() function returns the argument with the 
+  maximum value, or return NULL if any argument is NULL. 
+  The multi-argument max() function searches its arguments from left to right
+  for an argument that defines a collating function and uses that collating
+  function for all string comparisons.  If none of the arguments to max()
+  define a collating function, then the BINARY collating function is used.
+  Note that <b>max()</b> is a simple function when
+  it has 2 or more arguments but operates as an
+  <a href="lang_aggfunc.html#minggunc">aggregate function</a> if given only a single argument.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="minoreunc"></a>
+min(<i>X</i>,<i>Y</i>,...)</td><td valign="top">
+  The multi-argument min() function returns the argument with the
+  minimum value.
+  The multi-argument min() function searches its arguments from left to right
+  for an argument that defines a collating function and uses that collating
+  function for all string comparisons.  If none of the arguments to min()
+  define a collating function, then the BINARY collating function is used.
+  Note that <b>min()</b> is a simple function when
+  it has 2 or more arguments but operates as an 
+  <a href="lang_aggfunc.html#maxggunc">aggregate function</a> if given
+  only a single argument.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="nullif"></a>
+nullif(<i>X</i>,<i>Y</i>)</td><td valign="top">
+  The nullif(X,Y) function returns its first argument if the arguments are
+  different and NULL if the arguments are the same.  The nullif(X,Y) function
+  searches its arguments from left to right for an argument that defines a
+  collating function and uses that collating function for all string
+  comparisons.  If neither argument to nullif() defines a collating function
+  then the BINARY is used.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="quote"></a>
+quote(<i>X</i>)</td><td valign="top">
+  The quote(X) function returns a string which is the value of
+  its argument suitable for inclusion into another SQL statement.
+  Strings are surrounded by single-quotes with escapes on interior quotes
+  as needed.  BLOBs are encoded as hexadecimal literals.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="random"></a>
+random()</td><td valign="top">
+  The random() function returns a pseudo-random integer
+  between -9223372036854775808 and +9223372036854775807.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="randomblob"></a>
+randomblob(<i>N</i>)</td><td valign="top">
+  The randomblob(N) function return an N-byte blob containing pseudo-random
+  bytes. If N is less than 1 then a 1-byte random blob is returned.
+
+  <p>Hint:  applications can generate globally unique identifiers
+  using this function together with <a href="lang_corefunc.html#hex">hex()</a> and/or
+  <a href="lang_corefunc.html#lower">lower()</a> like this:</p>
+
+  
+  hex(randomblob(16))<br></br>
+  lower(hex(randomblob(16)))
+  
+</td></tr><tr><td valign="top" align="right" width="120"><a name="replace"></a>
+replace(<i>X</i>,<i>Y</i>,<i>Z</i>)</td><td valign="top">
+  The replace(X,Y,Z) function returns a string formed by substituting
+  string Z for every occurrance of string Y in string X.  The <a href="datatype3.html#collation">BINARY</a>
+  collating sequence is used for comparisons.  If Y is an empty
+  string then return X unchanged.  If Z is not initially
+  a string, it is cast to a UTF-8 string prior to processing.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="round"></a>
+round(<i>X</i>)<br></br>round(<i>X</i>,<i>Y</i>)</td><td valign="top">
+  The round(X,Y) function returns a string representation of the floating-point
+  value X rounded to Y digits to the right of the decimal point.
+  If the Y argument is omitted, the X value is truncated to an integer.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="rtrim"></a>
+rtrim(<i>X</i>)<br></br>rtrim(<i>X</i>,<i>Y</i>)</td><td valign="top">
+  The rtrim(X,Y) function returns a string formed by removing any and all
+  characters that appear in Y from the right side of X.
+  If the Y argument is omitted, rtrim(X) removes spaces from the right
+  side of X.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="soundex"></a>
+soundex(<i>X</i>)</td><td valign="top">
+  The soundex(X) function returns a string that is the soundex encoding 
+  of the string X.
+  The string "?000" is returned if the argument is NULL or contains
+  no ASCII alphabetic characters.
+  This function is omitted from SQLite by default.
+  It is only available if the SQLITE_SOUNDEX compile-time option
+  is used when SQLite is built.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="sqlite_compileoption_get"></a>
+sqlite_compileoption_get(<i>N</i>)</td><td valign="top">
+  The sqlite_compileoption_get() SQL function is a wrapper around the
+  sqlite3_compileoption_get() C/C++ function.
+  This routine returns the N-th compile-time option used to build SQLite
+  or NULL if N is out of range.  See also the <a href="pragma.html#pragma_compile_options">compile_options pragma</a>.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="sqlite_compileoption_used"></a>
+sqlite_compileoption_used(<i>X</i>)</td><td valign="top">
+  The sqlite_compileoption_used() SQL function is a wrapper around the
+  sqlite3_compileoption_used() C/C++ function.
+  When the argument X to sqlite_compileoption_used(X) is a string which
+  is the name of a compile-time option, this routine returns true (1) or
+  false (0) depending on whether or not that option was used during the
+  build.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="sqlite_source_id"></a>
+sqlite_source_id()</td><td valign="top">
+  The sqlite_source_id() function returns a string that identifies the
+  specific version of the source code that was used to build the SQLite
+  library.  The string returned by sqlite_source_id() begins with
+  the date and time that the source code was checked in and is follows by
+  an SHA1 hash that uniquely identifies the source tree.  This function is
+  an SQL wrapper around the sqlite3_sourceid() C interface.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="sqlite_version"></a>
+sqlite_version()</td><td valign="top">
+  The sqlite_version() function returns the version string for the SQLite
+  library that is running.  This function is an SQL
+  wrapper around the sqlite3_libversion() C-interface.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="substr"></a>
+substr(<i>X</i>,<i>Y</i>,<i>Z</i>)<br></br>substr(<i>X</i>,<i>Y</i>)</td><td valign="top">
+  The substr(X,Y,Z) function returns a substring of input string X that begins
+  with the Y-th character and which is Z characters long.
+  If Z is omitted then substr(X,Y) returns all characters through the end
+  of the string X beginning with the Y-th.
+  The left-most character of X is number 1.  If Y is negative
+  then the first character of the substring is found by counting from the
+  right rather than the left.  If Z is negative then
+  the abs(Z) characters preceeding the Y-th character are returned.
+  If X is a string then characters indices refer to actual UTF-8 
+  characters.  If X is a BLOB then the indices refer to bytes.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="total_changes"></a>
+total_changes()</td><td valign="top">
+  The total_changes() function returns the number of row changes
+  caused by INSERT, UPDATE or DELETE
+  statements since the current database connection was opened.
+  This function is a wrapper around the sqlite3_total_changes()
+  C/C++ interface.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="trim"></a>
+trim(<i>X</i>)<br></br>trim(<i>X</i>,<i>Y</i>)</td><td valign="top">
+  The trim(X,Y) function returns a string formed by removing any and all
+  characters that appear in Y from both ends of X.
+  If the Y argument is omitted, trim(X) removes spaces from both ends of X.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="typeof"></a>
+typeof(<i>X</i>)</td><td valign="top">
+  The typeof(X) function returns a string that indicates the <a href="datatype3.html">datatype</a> of
+  the expression X: "null", "integer", "real", "text", or "blob".
+</td></tr><tr><td valign="top" align="right" width="120"><a name="upper"></a>
+upper(<i>X</i>)</td><td valign="top">
+  The upper(X) function returns a copy of input string X in which all 
+  lower-case ASCII characters are converted to their upper-case equivalent.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="zeroblob"></a>
+zeroblob(<i>N</i>)</td><td valign="top">
+  The zeroblob(N) function returns a BLOB consisting of N bytes of 0x00.
+  SQLite manages these zeroblobs very efficiently.  Zeroblobs can be used to
+  reserve space for a BLOB that is later written using 
+  incremental BLOB I/O
+  This SQL function is implemented using the sqlite3_result_zeroblob()
+  routine from the C/C++ interface.
+</td></tr>
+</table>
+
+</div>
+	</div>
+
+
+	<!--/BOTTOM LINE-->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/google-code-prettify/prettify.js"></script>
+    <script src="assets/js/bootstrap-transition.js"></script>
+    <script src="assets/js/bootstrap-alert.js"></script>
+    <script src="assets/js/bootstrap-modal.js"></script>
+    <script src="assets/js/bootstrap-dropdown.js"></script>
+    <script src="assets/js/bootstrap-scrollspy.js"></script>
+    <script src="assets/js/bootstrap-tab.js"></script>
+    <script src="assets/js/bootstrap-tooltip.js"></script>
+    <script src="assets/js/bootstrap-popover.js"></script>
+    <script src="assets/js/bootstrap-button.js"></script>
+    <script src="assets/js/bootstrap-collapse.js"></script>
+    <script src="assets/js/bootstrap-carousel.js"></script>
+    <script src="assets/js/bootstrap-typeahead.js"></script>
+    <script src="assets/js/jquery.easing.1.3.js"></script>
+    <script src="assets/js/jquery.slabtext.min.js"></script>
+    <script src="assets/js/jquery.flexslider-min.js"></script>
+    <script src="assets/js/superfish-menu/superfish.js"></script>
+    <script src="assets/js/plugin.js"></script>
+    <script src="assets/js/jquery.prettyPhoto.js"></script>
+    <script src="assets/js/jquery.gmap.min.js"></script>
+    <script src="assets/js/jquery.preloader.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/application.js"></script>
+</body></html>
+
+

@@ -1,0 +1,184 @@
+<html><head>
+	<title>SQL Features That SQLite Does Not Implement</title>
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="assets/css/docs.css" rel="stylesheet">
+    <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if IE 8]>
+    	<link rel="stylesheet" type="text/css" href="assets/css/ie.css" />
+    <![endif]-->
+</head>
+<body>
+
+<!--TOP-->
+    <div class="top_line"></div>
+
+ <!--HEADER-->
+<header>
+        <div class="container">
+        <div class="row">
+                <div class="span12">
+                    <nav id="main-nav">
+                        <ul id="menu">
+                            <li class="current"><a href="lang.html">SQLite</a></li>
+                            <li><a href="#">COMMON</a>
+                                <ul>
+									<li><a href="lang_delete.html">DELETE</a></li>
+									<li><a href="lang_insert.html">INSERT</a></li>
+									<li><a href="lang_replace.html">REPLACE</a></li>
+									<li><a href="lang_select.html">SELECT</a></li>
+									<li><a href="lang_update.html">UPDATE</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">CREATE</a>
+                            	<ul>
+                            		<li><a href="lang_altertable.html">ALTER TABLE</a></li>
+                            		<li><a href="lang_createindex.html">CREATE INDEX</a></li>
+									<li><a href="lang_createtable.html">CREATE TABLE</a></li>
+									<li><a href="lang_createtrigger.html">CREATE TRIGGER</a></li>
+									<li><a href="lang_createview.html">CREATE VIEW</a></li>
+									<li><a href="lang_createvtab.html">CREATE VIRTUAL TABLE</a></li>
+                            	</ul>
+                            </li>
+                            <li><a href="#">DROP</a>
+                            	<ul>
+                            		<li><a href="lang_dropindex.html">DROP INDEX</a></li>
+									<li><a href="lang_droptable.html">DROP TABLE</a></li>
+									<li><a href="lang_droptrigger.html">DROP TRIGGER</a></li>
+									<li><a href="lang_dropview.html">DROP VIEW</a></li>
+                            	</ul>
+                            </li>
+                            <li><a href="#">TRANSACTIONS</a>
+                            	<ul>
+                            		<li><a href="lang_transaction.html">BEGIN TRANSACTION</a></li>
+                            		<li><a href="lang_transaction.html">COMMIT TRANSACTION</a></li>
+                            		<li><a href="lang_transaction.html">END TRANSACTION</a></li>
+                            		<li><a href="lang_savepoint.html">RELEASE SAVEPOINT</a></li>
+                            		<li><a href="lang_transaction.html">ROLLBACK TRANSACTION</a></li>
+									<li><a href="lang_savepoint.html">SAVEPOINT</a></li>
+                            	</ul>
+                            </li>
+                             <li><a href="#">OTHERS</a>
+                            	<ul>
+                            		<li><a href="lang_analyze.html">ANALYZE</a></li>
+									<li><a href="lang_attach.html">ATTACH DATABASE</a></li>
+									<li><a href="lang_detach.html">DETACH DATABASE</a></li>
+									<li><a href="lang_explain.html">EXPLAIN</a></li>
+									<li><a href="lang_indexedby.html">INDEXED BY</a></li>
+									<li><a href="lang_conflict.html">ON CONFLICT clause</a></li>
+									<li><a href="pragma.html#syntax">PRAGMA</a></li>
+									<li><a href="lang_reindex.html">REINDEX</a></li>
+									<li><a href="lang_vacuum.html">VACUUM</a></li>
+                            	</ul>
+                            </li>
+                            <li><a href="#">FUNCTIONS</a>
+                            	<ul>
+                            		<li><a href="lang_aggfunc.html">Aggregate</a></li>
+                            		<li><a href="lang_comment.html">Comment</a></li>
+                            		<li><a href="lang_corefunc.html">Core</a></li>
+                            		<li><a href="lang_datefunc.html">Date and Time</a></li>
+                            		<li><a href="lang_expr.html">Expression</a></li>
+                            		<li><a href="lang_keywords.html">Keywords</a></li>
+                            	</ul>
+                            </li>
+                        </ul>
+                    </nav><!-- end #main-nav -->
+                </div>
+            </div>
+		</div>
+	</header>
+	<!--/HEADER-->
+	
+	<!--WELCOME AREA-->
+    <div class="gray_bg">
+        <div class="container">
+            <div class="row welcome">
+                <div class="span12"><h1>SQL Features That SQLite Does Not Implement</h1><br /></div>
+            </div>
+        </div>
+    </div>
+    <!--/WELCOME AREA-->
+	<!--MAIN CONTENT AREA-->
+    <div class="container inner_content">
+	<section id="typography">
+	<div class="row">
+    <div class="span12">
+
+<p>
+Rather than try to list all the features of SQL92 that SQLite does
+support, it is much easier to list those that it does not.
+Unsupported features of SQL92 are shown below.</p>
+
+<p>
+The order of this list gives some hint as to when a feature might
+be added to SQLite.  Those features near the top of the list are
+likely to be added in the near future.  There are no immediate
+plans to add features near the bottom of the list.
+</p>
+
+<table cellpadding="10">
+
+<tr><td valign="top"><b><nobr>RIGHT and FULL OUTER JOIN</nobr></b></td><td width="10">&nbsp;</th><td valign="top">
+  LEFT OUTER JOIN is implemented, but not RIGHT OUTER JOIN or
+  FULL OUTER JOIN.
+</td></tr><tr><td valign="top"><b><nobr>Complete ALTER TABLE support</nobr></b></td><td width="10">&nbsp;</th><td valign="top">
+  Only the RENAME TABLE and ADD COLUMN variants of the 
+  ALTER TABLE command are supported.  Other kinds of ALTER TABLE operations
+  such as
+  DROP COLUMN, ALTER COLUMN, ADD CONSTRAINT, and so forth are omitted.
+</td></tr><tr><td valign="top"><b><nobr>Complete trigger support</nobr></b></td><td width="10">&nbsp;</th><td valign="top">
+  FOR EACH ROW triggers are supported but not FOR EACH STATEMENT
+  triggers.
+</td></tr><tr><td valign="top"><b><nobr>Writing to VIEWs</nobr></b></td><td width="10">&nbsp;</th><td valign="top">
+  VIEWs in SQLite are read-only.  You may not execute a DELETE, INSERT, or
+  UPDATE statement on a view. But you can create a trigger
+  that fires on an attempt to DELETE, INSERT, or UPDATE a view and do
+  what you need in the body of the trigger.
+</td></tr><tr><td valign="top"><b><nobr>GRANT and REVOKE</nobr></b></td><td width="10">&nbsp;</th><td valign="top">
+  Since SQLite reads and writes an ordinary disk file, the
+  only access permissions that can be applied are the normal
+  file access permissions of the underlying operating system.
+  The GRANT and REVOKE commands commonly found on client/server
+  RDBMSes are not implemented because they would be meaningless
+  for an embedded database engine.
+</td></tr>
+</table>
+
+</div>
+	</div>
+
+
+	<!--/BOTTOM LINE-->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/google-code-prettify/prettify.js"></script>
+    <script src="assets/js/bootstrap-transition.js"></script>
+    <script src="assets/js/bootstrap-alert.js"></script>
+    <script src="assets/js/bootstrap-modal.js"></script>
+    <script src="assets/js/bootstrap-dropdown.js"></script>
+    <script src="assets/js/bootstrap-scrollspy.js"></script>
+    <script src="assets/js/bootstrap-tab.js"></script>
+    <script src="assets/js/bootstrap-tooltip.js"></script>
+    <script src="assets/js/bootstrap-popover.js"></script>
+    <script src="assets/js/bootstrap-button.js"></script>
+    <script src="assets/js/bootstrap-collapse.js"></script>
+    <script src="assets/js/bootstrap-carousel.js"></script>
+    <script src="assets/js/bootstrap-typeahead.js"></script>
+    <script src="assets/js/jquery.easing.1.3.js"></script>
+    <script src="assets/js/jquery.slabtext.min.js"></script>
+    <script src="assets/js/jquery.flexslider-min.js"></script>
+    <script src="assets/js/superfish-menu/superfish.js"></script>
+    <script src="assets/js/plugin.js"></script>
+    <script src="assets/js/jquery.prettyPhoto.js"></script>
+    <script src="assets/js/jquery.gmap.min.js"></script>
+    <script src="assets/js/jquery.preloader.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/application.js"></script>
+</body></html>

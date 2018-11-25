@@ -1,0 +1,1 @@
+-- Hello World.lua-- Created with SQLiteManager 4.0.0-- On Monday, October 29, 2012-- write to logio.write("Hello World\n")-- do some dummy computation and add output to logfor i=1,10 doio.write("Hello # " ..i.. "\n")end-- display to messageDialogs:Message("Hello World finished execution. You have some new output in the Log panel.")

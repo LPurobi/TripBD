@@ -1,0 +1,228 @@
+<html><head>
+	<title>SQLite Query Language: Aggregate Functions</title>
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="assets/css/docs.css" rel="stylesheet">
+    <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if IE 8]>
+    	<link rel="stylesheet" type="text/css" href="assets/css/ie.css" />
+    <![endif]-->
+</head>
+<body>
+
+<!--TOP-->
+    <div class="top_line"></div>
+
+ <!--HEADER-->
+<header>
+        <div class="container">
+        <div class="row">
+                <div class="span12">
+                    <nav id="main-nav">
+                        <ul id="menu">
+                            <li class="current"><a href="lang.html">SQLite</a></li>
+                            <li><a href="#">COMMON</a>
+                                <ul>
+									<li><a href="lang_delete.html">DELETE</a></li>
+									<li><a href="lang_insert.html">INSERT</a></li>
+									<li><a href="lang_replace.html">REPLACE</a></li>
+									<li><a href="lang_select.html">SELECT</a></li>
+									<li><a href="lang_update.html">UPDATE</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">CREATE</a>
+                            	<ul>
+                            		<li><a href="lang_altertable.html">ALTER TABLE</a></li>
+                            		<li><a href="lang_createindex.html">CREATE INDEX</a></li>
+									<li><a href="lang_createtable.html">CREATE TABLE</a></li>
+									<li><a href="lang_createtrigger.html">CREATE TRIGGER</a></li>
+									<li><a href="lang_createview.html">CREATE VIEW</a></li>
+									<li><a href="lang_createvtab.html">CREATE VIRTUAL TABLE</a></li>
+                            	</ul>
+                            </li>
+                            <li><a href="#">DROP</a>
+                            	<ul>
+                            		<li><a href="lang_dropindex.html">DROP INDEX</a></li>
+									<li><a href="lang_droptable.html">DROP TABLE</a></li>
+									<li><a href="lang_droptrigger.html">DROP TRIGGER</a></li>
+									<li><a href="lang_dropview.html">DROP VIEW</a></li>
+                            	</ul>
+                            </li>
+                            <li><a href="#">TRANSACTIONS</a>
+                            	<ul>
+                            		<li><a href="lang_transaction.html">BEGIN TRANSACTION</a></li>
+                            		<li><a href="lang_transaction.html">COMMIT TRANSACTION</a></li>
+                            		<li><a href="lang_transaction.html">END TRANSACTION</a></li>
+                            		<li><a href="lang_savepoint.html">RELEASE SAVEPOINT</a></li>
+                            		<li><a href="lang_transaction.html">ROLLBACK TRANSACTION</a></li>
+									<li><a href="lang_savepoint.html">SAVEPOINT</a></li>
+                            	</ul>
+                            </li>
+                             <li><a href="#">OTHERS</a>
+                            	<ul>
+                            		<li><a href="lang_analyze.html">ANALYZE</a></li>
+									<li><a href="lang_attach.html">ATTACH DATABASE</a></li>
+									<li><a href="lang_detach.html">DETACH DATABASE</a></li>
+									<li><a href="lang_explain.html">EXPLAIN</a></li>
+									<li><a href="lang_indexedby.html">INDEXED BY</a></li>
+									<li><a href="lang_conflict.html">ON CONFLICT clause</a></li>
+									<li><a href="pragma.html#syntax">PRAGMA</a></li>
+									<li><a href="lang_reindex.html">REINDEX</a></li>
+									<li><a href="lang_vacuum.html">VACUUM</a></li>
+                            	</ul>
+                            </li>
+                            <li><a href="#">FUNCTIONS</a>
+                            	<ul>
+                            		<li><a href="lang_aggfunc.html">Aggregate</a></li>
+                            		<li><a href="lang_comment.html">Comment</a></li>
+                            		<li><a href="lang_corefunc.html">Core</a></li>
+                            		<li><a href="lang_datefunc.html">Date and Time</a></li>
+                            		<li><a href="lang_expr.html">Expression</a></li>
+                            		<li><a href="lang_keywords.html">Keywords</a></li>
+                            	</ul>
+                            </li>
+                        </ul>
+                    </nav><!-- end #main-nav -->
+                </div>
+            </div>
+		</div>
+	</header>
+	<!--/HEADER-->
+	
+	<!--WELCOME AREA-->
+    <div class="gray_bg">
+        <div class="container">
+            <div class="row welcome">
+                <div class="span12"><h1>Aggregate Functions</h1><br /></div>
+            </div>
+        </div>
+    </div>
+    <!--/WELCOME AREA-->
+	
+	 <!--MAIN CONTENT AREA-->
+    <div class="container inner_content">
+	<section id="typography">
+	<div class="row">
+    <div class="span12">
+    
+
+<p>
+The aggregate functions shown below are available by default.  Additional
+aggregate functions written in C may be added using the 
+sqlite3_create_function()
+API.</p>
+
+<p>
+In any aggregate function that takes a single argument, that argument
+can be preceded by the keyword DISTINCT.  In such cases, duplicate
+elements are filtered before being passed into the aggregate function.
+For example, the function "count(distinct X)" will return the number
+of distinct values of column X instead of the total number of non-null
+values in column X.
+</p>
+
+<table border=0 cellpadding=10>
+<tr><td valign="top" align="right" width="120"><a name="avg"></a>
+avg(<i>X</i>)</td><td valign="top">
+  The avg() function
+  returns the average value of all non-NULL <i>X</i> within a
+  group.  String and BLOB values that do not look like numbers are
+  interpreted as 0.
+  The result of avg() is always a floating point value as long as
+  at there is at least one non-NULL input even if all
+  inputs are integers.  The result of avg() is NULL if and only if
+  there are no non-NULL inputs.  
+</td></tr><tr><td valign="top" align="right" width="120"><a name="count"></a>
+count(<i>X</i>)<br></br>count(*)</td><td valign="top">
+  The count(X) function returns
+  a count of the number of times
+  that <i>X</i> is not NULL in a group.  The count(*) function
+  (with no arguments) returns the total number of rows in the group.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="groupconcat"></a>
+group_concat(<i>X</i>)<br></br>group_concat(<i>X</i>,<i>Y</i>)</td><td valign="top">
+  The group_concat() function returns
+  a string which is the concatenation of
+  all non-NULL values of <i>X</i>.  If parameter <i>Y</i> is present then
+  is is used as the separator
+  between instances of <i>X</i>.  A comma (",") is used as the separator
+  if <i>Y</i> is omitted.  The order of the concatenated elements is
+  arbitrary.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="maxggunc"></a>
+max(<i>X</i>)</td><td valign="top">
+  The max() aggregate function
+  returns the maximum value of all values in the group.
+  The maximum value is the value that would be returned last in an
+  ORDER BY on the same column.  Aggregate max() returns NULL 
+  if and only if there are no non-NULL values in the group.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="minggunc"></a>
+min(<i>X</i>)</td><td valign="top">
+  The min() aggregate function
+  returns the minimum non-NULL value of all values in the group.
+  The minimum value is the first non-NULL value that would appear
+  in an ORDER BY of the column.
+  Aggregate min() returns NULL if and only if there are no non-NULL
+  values in the group.
+</td></tr><tr><td valign="top" align="right" width="120"><a name="sumunc"></a>
+sum(<i>X</i>)<br></br>total(<i>X</i>)</td><td valign="top">
+  The sum() and total() aggregate functions
+  return sum of all non-NULL values in the group.
+  If there are no non-NULL input rows then sum() returns
+  NULL but total() returns 0.0.
+  NULL is not normally a helpful result for the sum of no rows
+  but the SQL standard requires it and most other
+  SQL database engines implement sum() that way so SQLite does it in the
+  same way in order to be compatible.   The non-standard total() function
+  is provided as a convenient way to work around this design problem
+  in the SQL language.</p>
+
+  <p>The result of total() is always a floating point value.
+  The result of sum() is an integer value if all non-NULL inputs are integers.
+  If any input to sum() is neither an integer or a NULL
+  then sum() returns a floating point value
+  which might be an approximation to the true sum.</p>
+
+  <p>Sum() will throw an "integer overflow" exception if all inputs
+  are integers or NULL
+  and an integer overflow occurs at any point during the computation.
+  Total() never throws an integer overflow.
+</td></tr>
+</table>
+
+</div>
+	</div>
+
+
+	<!--/BOTTOM LINE-->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/google-code-prettify/prettify.js"></script>
+    <script src="assets/js/bootstrap-transition.js"></script>
+    <script src="assets/js/bootstrap-alert.js"></script>
+    <script src="assets/js/bootstrap-modal.js"></script>
+    <script src="assets/js/bootstrap-dropdown.js"></script>
+    <script src="assets/js/bootstrap-scrollspy.js"></script>
+    <script src="assets/js/bootstrap-tab.js"></script>
+    <script src="assets/js/bootstrap-tooltip.js"></script>
+    <script src="assets/js/bootstrap-popover.js"></script>
+    <script src="assets/js/bootstrap-button.js"></script>
+    <script src="assets/js/bootstrap-collapse.js"></script>
+    <script src="assets/js/bootstrap-carousel.js"></script>
+    <script src="assets/js/bootstrap-typeahead.js"></script>
+    <script src="assets/js/jquery.easing.1.3.js"></script>
+    <script src="assets/js/jquery.slabtext.min.js"></script>
+    <script src="assets/js/jquery.flexslider-min.js"></script>
+    <script src="assets/js/superfish-menu/superfish.js"></script>
+    <script src="assets/js/plugin.js"></script>
+    <script src="assets/js/jquery.prettyPhoto.js"></script>
+    <script src="assets/js/jquery.gmap.min.js"></script>
+    <script src="assets/js/jquery.preloader.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/application.js"></script>
+</body></html>

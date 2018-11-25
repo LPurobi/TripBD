@@ -1,0 +1,519 @@
+<html><head>
+	<title>SQLite Query Language: expression</title>
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="assets/css/docs.css" rel="stylesheet">
+    <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if IE 8]>
+    	<link rel="stylesheet" type="text/css" href="assets/css/ie.css" />
+    <![endif]-->
+</head>
+<body>
+
+<!--TOP-->
+    <div class="top_line"></div>
+
+ <!--HEADER-->
+<header>
+        <div class="container">
+        <div class="row">
+                <div class="span12">
+                    <nav id="main-nav">
+                        <ul id="menu">
+                            <li class="current"><a href="lang.html">SQLite</a></li>
+                            <li><a href="#">COMMON</a>
+                                <ul>
+									<li><a href="lang_delete.html">DELETE</a></li>
+									<li><a href="lang_insert.html">INSERT</a></li>
+									<li><a href="lang_replace.html">REPLACE</a></li>
+									<li><a href="lang_select.html">SELECT</a></li>
+									<li><a href="lang_update.html">UPDATE</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">CREATE</a>
+                            	<ul>
+                            		<li><a href="lang_altertable.html">ALTER TABLE</a></li>
+                            		<li><a href="lang_createindex.html">CREATE INDEX</a></li>
+									<li><a href="lang_createtable.html">CREATE TABLE</a></li>
+									<li><a href="lang_createtrigger.html">CREATE TRIGGER</a></li>
+									<li><a href="lang_createview.html">CREATE VIEW</a></li>
+									<li><a href="lang_createvtab.html">CREATE VIRTUAL TABLE</a></li>
+                            	</ul>
+                            </li>
+                            <li><a href="#">DROP</a>
+                            	<ul>
+                            		<li><a href="lang_dropindex.html">DROP INDEX</a></li>
+									<li><a href="lang_droptable.html">DROP TABLE</a></li>
+									<li><a href="lang_droptrigger.html">DROP TRIGGER</a></li>
+									<li><a href="lang_dropview.html">DROP VIEW</a></li>
+                            	</ul>
+                            </li>
+                            <li><a href="#">TRANSACTIONS</a>
+                            	<ul>
+                            		<li><a href="lang_transaction.html">BEGIN TRANSACTION</a></li>
+                            		<li><a href="lang_transaction.html">COMMIT TRANSACTION</a></li>
+                            		<li><a href="lang_transaction.html">END TRANSACTION</a></li>
+                            		<li><a href="lang_savepoint.html">RELEASE SAVEPOINT</a></li>
+                            		<li><a href="lang_transaction.html">ROLLBACK TRANSACTION</a></li>
+									<li><a href="lang_savepoint.html">SAVEPOINT</a></li>
+                            	</ul>
+                            </li>
+                             <li><a href="#">OTHERS</a>
+                            	<ul>
+                            		<li><a href="lang_analyze.html">ANALYZE</a></li>
+									<li><a href="lang_attach.html">ATTACH DATABASE</a></li>
+									<li><a href="lang_detach.html">DETACH DATABASE</a></li>
+									<li><a href="lang_explain.html">EXPLAIN</a></li>
+									<li><a href="lang_indexedby.html">INDEXED BY</a></li>
+									<li><a href="lang_conflict.html">ON CONFLICT clause</a></li>
+									<li><a href="pragma.html#syntax">PRAGMA</a></li>
+									<li><a href="lang_reindex.html">REINDEX</a></li>
+									<li><a href="lang_vacuum.html">VACUUM</a></li>
+                            	</ul>
+                            </li>
+                            <li><a href="#">FUNCTIONS</a>
+                            	<ul>
+                            		<li><a href="lang_aggfunc.html">Aggregate</a></li>
+                            		<li><a href="lang_comment.html">Comment</a></li>
+                            		<li><a href="lang_corefunc.html">Core</a></li>
+                            		<li><a href="lang_datefunc.html">Date and Time</a></li>
+                            		<li><a href="lang_expr.html">Expression</a></li>
+                            		<li><a href="lang_keywords.html">Keywords</a></li>
+                            	</ul>
+                            </li>
+                        </ul>
+                    </nav><!-- end #main-nav -->
+                </div>
+            </div>
+		</div>
+	</header>
+	<!--/HEADER-->
+	
+	<!--WELCOME AREA-->
+    <div class="gray_bg">
+        <div class="container">
+            <div class="row welcome">
+                <div class="span12"><h1>EXPRESSION</h1><br /></div>
+            </div>
+        </div>
+    </div>
+    <!--/WELCOME AREA-->
+    
+    <!--MAIN CONTENT AREA-->
+    <div class="container inner_content">
+	<section id="typography">
+	<div class="row">
+    <div class="span12">
+    
+	<h4><a href="syntaxdiagrams.html#expr">expr:</a></h4>
+	<img alt="syntax diagram expr" src="images/syntax/expr.gif"></img>
+	<br /><br />
+	<h4><a href="syntaxdiagrams.html#literal-value">literal-value:</a></h4>
+	<img alt="syntax diagram literal-value" src="images/syntax/literal-value.gif"></img> 
+	<br /><br />
+	<h4><a href="syntaxdiagrams.html#signed-number">signed-number:</a></h4>
+	<img alt="syntax diagram signed-number" src="images/syntax/signed-number.gif"></img> 
+	<br /><br />
+	<h4><a href="syntaxdiagrams.html#raise-function">raise-function:</a></h4>
+	<img alt="syntax diagram raise-function" src="images/syntax/raise-function.gif"></img> 
+	<br /><br /><br />
+
+<p>This section is different from the others.  Most other sections of
+this document talks about a particular SQL command.  This section does
+not talk about a standalone command but about "expressions" which are 
+subcomponents of most other commands.</p>
+
+<a name="binaryops"></a>
+
+<h3>Operators</h3>
+<p>SQLite understands the following binary operators, in order from
+highest to lowest precedence:</p>
+
+<pre>
+<font color="#2c2cf0"><big>||
+*    /    %
++    -
+&lt;&lt;   &gt;&gt;   &amp;    |
+&lt;    &lt;=   &gt;    &gt;=
+=    ==   !=   &lt;&gt;   </big>IS  IN  LIKE  GLOB  MATCH  REGEXP
+AND   
+OR</font>
+</pre>
+
+<p>Supported unary prefix operators are these:</p>
+
+<pre>
+<font color="#2c2cf0"><big>-    +    ~    NOT</big></font>
+</pre>
+
+<a name="collateop"></a>
+
+<p>The COLLATE operator can be thought of as a unary postfix
+operator.  The COLLATE operator has the highest precedence.
+It always binds more tightly than any prefix unary operator or
+any binary operator.</p>
+
+
+<p>The unary operator <font color="#2c2cf0"><big>+</big></font> is a no-op.  It can be applied
+to strings, numbers, or blobs and it always gives as its result the
+value of the operand.</p>
+
+<p>Note that there are two variations of the equals and not equals
+operators.  Equals can be either
+
+<font color="#2c2cf0"><big>=</big></font> or <font color="#2c2cf0"><big>==</big></font>.
+The non-equals operator can be either
+<font color="#2c2cf0"><big>!=</big></font> or <font color="#2c2cf0"><big>&lt;&gt;</big></font>.
+The <font color="#2c2cf0"><big>||</big></font> operator is "concatenate" - it joins together
+the two strings of its operands.
+The operator <font color="#2c2cf0"><big>%</big></font> outputs the remainder of its left 
+operand modulo its right operand.</p>
+
+<p>The result of any binary operator is a numeric value, except
+for the <font color="#2c2cf0"><big>||</big></font> concatenation operator which gives a string
+result.</p><a name="isisnot"></a>
+<p>The <font color="#2c2cf0"><big>IS</big></font> and <font color="#2c2cf0"><big>IS NOT</big></font> operators work
+like <font color="#2c2cf0"><big>=</big></font> and <font color="#2c2cf0"><big>!=</big></font> except that NULL values compare
+equal to one another.  <font color="#2c2cf0"><big>IS</big></font> and <font color="#2c2cf0"><big>IS NOT</big></font>
+have the same precedence as <font color="#2c2cf0"><big>=</big></font>.<a name="litvalue"></a>
+
+<h3>Literal Values</h3>
+<p>
+A literal value is a constant of some kind.
+Literal values may be integers, floating point numbers, strings,
+BLOBs, or NULLs.
+Scientific notation is supported for floating point literal values.
+The "." character is always used 
+as the decimal point even if the locale setting specifies "," for
+this role - the use of "," for the decimal point would result in
+syntactic ambiguity.  A string constant is formed by enclosing the
+string in single quotes (').  A single quote within the string can
+be encoded by putting two single quotes in a row - as in Pascal.
+C-style escapes using the backslash character are not supported because
+they are not standard SQL.
+BLOB literals are string literals containing hexadecimal data and
+preceded by a single "x" or "X" character.  For example:</p>
+
+<pre>
+X'53514C697465'
+</pre>
+
+<p>
+A literal value can also be the token "NULL".
+</p>
+
+<a name="varparam"></a>
+
+<h3>Parameters</h3>
+<p>
+A "variable" or "parameter" token
+specifies a placeholder in the expression for a literal
+value that is filled in at runtime using the
+sqlite3_bind() family of C/C++ interfaces.
+Parameters can take several forms:
+</p>
+
+
+<table>
+<tr>
+<td align="right" valign="top"><b>?</b><i>NNN</i></td><td width="20"></td>
+<td>A question mark followed by a number <i>NNN</i> holds a spot for the
+NNN-th parameter.  NNN must be between 1 and SQLITE_MAX_VARIABLE_NUMBER.</td>
+</tr>
+<tr>
+<td align="right" valign="top"><b>?</b></td><td width="20"></td>
+<td>A question mark that is not followed by a number holds a spot for
+the next unused parameter.</td>
+</tr>
+<tr>
+<td align="right" valign="top"><b>:</b><i>AAAA</i></td><td width="20"></td>
+<td>A colon followed by an identifier name holds a spot for a named
+parameter with the name AAAA.  Named parameters are also numbered.
+The number assigned is the next unused number.  To avoid confusion,
+it is best to avoid mixing named and numbered parameters.</td>
+</tr>
+<tr>
+<td align="right" valign="top"><b>@</b><i>AAAA</i></td><td width="20"></td>
+<td>An "at" sign works exactly like a colon.</td>
+</tr>
+<tr>
+<td align="right" valign="top"><b>$</b><i>AAAA</i></td><td width="20"></td>
+<td>A dollar-sign followed by an identifier name also holds a spot for a named
+parameter with the name AAAA.  The identifier name in this case can include
+one or more occurances of "::" and a suffix enclosed in "(...)" containing
+any text at all.  This syntax is the form of a variable name in the
+<a href="http://www.tcl.tk/">Tcl programming language</a>.  The presence
+of this syntax results from the fact that SQLite is really a 
+Tcl extension that has escaped into the wild.</td>
+</tr>
+</table>
+
+
+<p>Parameters that are not assigned values using
+sqlite3_bind() are treated
+as NULL.</p>
+
+<a name="like"></a>
+
+<h3>The LIKE and GLOB operators</h3>
+<p>The LIKE operator does a pattern matching comparison. The operand
+to the right of the LIKE operator contains the pattern and the left hand
+operand contains the string to match against the pattern.
+
+A percent symbol ("%") in the LIKE pattern matches any
+sequence of zero or more characters in the string.  An underscore
+("_") in the LIKE pattern matches any single character in the
+string.  Any other character matches itself or its lower/upper case
+equivalent (i.e. case-insensitive matching).  (A bug: SQLite only
+understands upper/lower case for ASCII characters by default.  The
+LIKE operator is case sensitive by default for unicode characters that are
+beyond the ASCII range.  For example,
+the expression <b>'a'&nbsp;LIKE&nbsp;'A'</b>
+is TRUE but <b>'&aelig;'&nbsp;LIKE&nbsp;'&AElig;'</b> is FALSE.)<p>
+
+<p>If the optional ESCAPE clause is present, then the expression
+following the ESCAPE keyword must evaluate to a string consisting of
+a single character. This character may be used in the LIKE pattern
+to include literal percent or underscore characters. The escape
+character followed by a percent symbol (%), underscore (_), or a second
+instance of the escape character itself matches a
+literal percent symbol, underscore, or a single escape character,
+respectively.
+
+<p>The infix LIKE operator is implemented by calling the
+application-defined SQL functions <a href="lang_corefunc.html#like">like(<i>Y</i>,<i>X</i>)</a> or
+<a href="lang_corefunc.html#like">like(<i>Y</i>,<i>X</i>,<i>Z</i>)</a></a>.</p>
+
+<p>The LIKE operator can be made case sensitive using the
+<a href="pragma.html#pragma_case_sensitive_like">case_sensitive_like pragma</a>.</p>
+
+<a name="glob"></a>
+
+<p>The GLOB operator is similar to LIKE but uses the Unix
+file globbing syntax for its wildcards.  Also, GLOB is case
+sensitive, unlike LIKE.  Both GLOB and LIKE may be preceded by
+the NOT keyword to invert the sense of the test.  The infix GLOB 
+operator is implemented by calling the function
+<a href="lang_corefunc.html#glob">glob(<i>Y</i>,<i>X</i>)</a> and can be modified by overriding
+that function.</p>
+
+<a name="regexp"></a>
+
+<p>The REGEXP operator is a special syntax for the regexp()
+user function.  No regexp() user function is defined by default
+and so use of the REGEXP operator will normally result in an
+error message.  If a application-defined SQL function named "regexp"
+is added at run-time, that function will be called in order
+to implement the REGEXP operator.</p>
+
+<a name="match"></a>
+
+<p>The MATCH operator is a special syntax for the match()
+application-defined function.  The default match() function implementation
+raises an exception and is not really useful for anything.
+But extensions can override the match() function with more
+helpful logic.</p>
+
+<a name="between"></a>
+
+<h3>The BETWEEN operator</h3>
+<p>The BETWEEN operator is logically equivalent to a pair of comparisons.
+"<i>x</i> <b>BETWEEN</b> <i>y</i> <b>AND</b> <i>z</i>" is 
+equivalent to 
+"<i>x</i><b>&gt;=</b><i>y</i> <b>AND</b> <i>x</i><b>&lt;=</b><i>z</i>" except
+that with BETWEEN, the <i>x</i> expression is only evaluated once.
+The precedence of the BETWEEN operator is the same as the precedence
+as operators <b>==</b> and <b>!=</b> and <b>LIKE</b> and groups left to right.
+
+<a name="case"></a>
+
+<h3>The CASE expression</h3>
+<p>A CASE expression serves a role similar to IF-THEN-ELSE in other
+programming languages.  WHEN expressions are evaluated from left to
+right until one is found that is true, at which point the corresponding
+THEN term becomes the result.  If no WHEN expression is true then the ELSE 
+clause determines the result or the result is NULL if there is no ELSE clase.
+</p>
+
+<p>The optional expression that occurs in between the CASE keyword and the
+first WHEN keyword is the "base" expression.  There are two basic forms
+of a CASE expression: those with and without a base expression.
+In a CASE without a base expression, each WHEN expression is evaluted
+as a boolean and the overall result is determined by first WHEN expression
+that is true.
+In a CASE with a base expression, the base expression is evaluted just
+once and the result is compared against each WHEN expression until a 
+match is found.
+When comparing a base expression against a WHEN expression, the same
+collating sequence, affinity, and NULL-handling rules apply as if the
+base expression and WHEN expression are respectively the left- and
+right-hand operands of an <big><b>=</b></big> operator.</p>
+
+<p>Assuming the subexpressions have no side-effects, the following
+two expressions are equivalent:</p>
+
+<ul>
+<li>CASE x WHEN w1 THEN r1 WHEN w2 THEN r2 ELSE r3 END
+<li>CASE WHEN x=w1 THEN r1 WHEN x=w2 THEN r2 ELSE r3 END
+</ul>
+
+<p>The only difference between the two CASE expressions shown above
+is that the <i>x</i> expression is evaluated
+exactly once in the first example but might be evaluated multiple times
+in the second.</p>
+
+<p>A NULL result is considered false when evaluating WHEN terms.
+If the base expression is NULL then the result of the CASE is the
+result of the ELSE expression if it exists, or NULL if the ELSE clause
+is omitted.</p>
+
+
+<h3>Table Column Names</h3>
+<p>A column name can be any of the names defined in the <a href="lang_createtable.html">CREATE TABLE</a>
+statement or one of the following special identifiers: "<b>ROWID</b>",
+"<b>OID</b>", or "<b>_ROWID_</b>".
+These special identifiers all describe the
+unique integer key (the <a href="lang_createtable.html#rowid">rowid</a>) associated with every 
+row of every table.
+The special identifiers only refer to the row key if the <a href="lang_createtable.html">CREATE TABLE</a>
+statement does not define a real column with the same name.
+The rowid can be used anywhere a regular
+column can be used.</p>
+
+<h3>Subqueries</h3>
+<p><a href="lang_select.html">SELECT</a> statements can appear in expressions as either the
+right-hand operand of the IN operator, as a scalar quantity, or
+as the operand of an EXISTS operator.
+As a scalar quantity or the operand of an IN operator,
+the SELECT should have only a single column in its
+result.  Compound SELECTs (connected with keywords like UNION or
+EXCEPT) are allowed.
+With the EXISTS operator, the columns in the result set of the <a href="lang_select.html">SELECT</a> are
+ignored and the expression returns TRUE if one or more rows exist
+and FALSE if the result set is empty.
+If no terms in the <a href="lang_select.html">SELECT</a> expression refer to values in the containing
+query, then the expression is evaluated once prior to any other
+processing and the result is reused as necessary.  If the <a href="lang_select.html">SELECT</a> expression
+does contain variables from the outer query, then the <a href="lang_select.html">SELECT</a> is reevaluated
+every time it is needed.</p>
+
+<p>When a SELECT is the right operand of the IN operator, the IN
+operator returns TRUE if the SELECT result contains no NULLs and if
+the left operand matches any of the values in the SELECT result.
+The IN operator may be preceded
+by the NOT keyword to invert the sense of the test.</p>
+
+<p>When a SELECT appears within an expression but is not the right
+operand of an IN operator, then the first row of the result of the
+SELECT becomes the value used in the expression.  If the SELECT yields
+more than one result row, all rows after the first are ignored.  If
+the SELECT yields no rows, then the value of the SELECT is NULL.</p>
+
+<a name="castexpr"></a>
+
+<h3>CAST expressions</h3>
+
+<p>A CAST expression changes the <a href="datatype3.html">datatype</a> of the <expr> into the
+type specified by &lt;type&gt;. 
+&lt;type&gt; can be any non-empty type name that is valid
+for the type in a column definition of a <a href="lang_createtable.html">CREATE TABLE</a> statement.
+The &lt;type&gt; name is interpreted according to the 
+<a href="datatype3.html#affname">rules for determining column affinity</a>.
+
+<p>An explicit cast is strong than affinity; with the CAST expression
+the datatype conversion is forced even if it is lossy and irrreversible.
+<ul>
+<li><p>
+  A cast of a REAL value into an INTEGER will truncate the
+  fractional part of the REAL.  If an REAL is too large to be
+  represented as an INTEGER then the result of the cast is
+  the largest negative integer: -9223372036854775808.
+
+<li><p>
+ A cast of a TEXT value into an INTEGER or REAL will read a prefix
+ of the TEXT value that looks like an integer or real value, respectively,
+ and ignore the rest.  When casting from TEXT into INTEGER or REAL,
+ leading spaces in the TEXT value are ignored.  A cast of a TEXT value
+ that looks nothing like a number into INTEGER or REAL results in 0 or 0.0,
+ respectively.
+
+<li><p>
+ Casting a value into NUMERIC first does a forced conversion into REAL
+  but will then further converts the result into INTEGER if and only if
+  the conversion from REAL to INTEGER is lossless and reversible.
+  This is the only context in SQLite where the NUMERIC and INTEGER
+  <a href="datatype3.html#affinity">affinities</a> behave differently.
+
+<li><p>
+ Casting a value into TEXT renders the value as if via sqlite3_snprintf()
+  except that the resulting TEXT uses the <a href="pragma.html#pragma_encoding">encoding</a> of the database
+  connection.
+
+<li><p>
+ Casting a value to a &lt;type&gt; with no affinity causes the value to
+  be converted into a BLOB.  Casting to a BLOB consists of first casting
+  the value to TEXT in the <a href="pragma.html#pragma_encoding">encoding</a> of the database connection, then
+  interpreting the resulting byte sequence as a BLOB instead of as TEXT.
+
+<li><p>
+ Casting a BLOB value into any type other than a BLOB consists of first
+  interpreting the byte sequence of the BLOB as a TEXT string in the
+  database encoding then continuing as if the value where originally of
+  type TEXT.
+
+<li><p>
+ Any cast of a NULL value yields a NULL result.
+</ul>
+
+<p>Note that the result from casting any non-BLOB value into a 
+BLOB and the result from casting any BLOB value into a non-BLOB value
+will be different depending on whether the database <a href="pragma.html#pragma_encoding">encoding</a> is UTF-8,
+UTF-16be, or UTF-16le.
+
+<h3>Functions</h3>
+<p>Both <a href="lang_corefunc.html">simple</a> and <a href="lang_aggfunc.html">aggregate</a> functions are supported.
+(For presentation purposes, simple functions are further subdivided into
+<a href="lang_corefunc.html">core functions</a> and <a href="lang_datefunc.html">date-time functions</a>.)
+A simple function can be used in any expression.  Simple functions return
+a result immediately based on their inputs.  Aggregate functions
+may only be used in a SELECT statement.  Aggregate functions compute
+their result across all rows of the result set.</p>
+
+</div>
+	</div>
+
+
+	<!--/BOTTOM LINE-->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/google-code-prettify/prettify.js"></script>
+    <script src="assets/js/bootstrap-transition.js"></script>
+    <script src="assets/js/bootstrap-alert.js"></script>
+    <script src="assets/js/bootstrap-modal.js"></script>
+    <script src="assets/js/bootstrap-dropdown.js"></script>
+    <script src="assets/js/bootstrap-scrollspy.js"></script>
+    <script src="assets/js/bootstrap-tab.js"></script>
+    <script src="assets/js/bootstrap-tooltip.js"></script>
+    <script src="assets/js/bootstrap-popover.js"></script>
+    <script src="assets/js/bootstrap-button.js"></script>
+    <script src="assets/js/bootstrap-collapse.js"></script>
+    <script src="assets/js/bootstrap-carousel.js"></script>
+    <script src="assets/js/bootstrap-typeahead.js"></script>
+    <script src="assets/js/jquery.easing.1.3.js"></script>
+    <script src="assets/js/jquery.slabtext.min.js"></script>
+    <script src="assets/js/jquery.flexslider-min.js"></script>
+    <script src="assets/js/superfish-menu/superfish.js"></script>
+    <script src="assets/js/plugin.js"></script>
+    <script src="assets/js/jquery.prettyPhoto.js"></script>
+    <script src="assets/js/jquery.gmap.min.js"></script>
+    <script src="assets/js/jquery.preloader.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/application.js"></script>
+</body></html>
